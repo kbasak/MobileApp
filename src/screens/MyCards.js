@@ -100,12 +100,11 @@ export default Cards;
 const CardStyle = StyleSheet.create({
     container: {
         paddingTop: 20,
-        //marginTop: 10,
-        paddingBottom: 30,
+        paddingBottom: 150,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#c0f8f5',
-        height: 600
+        backgroundColor: '#58f6ee',
+        flex:1,
     },
     image: {
         flex: 1,
@@ -114,8 +113,9 @@ const CardStyle = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-        marginBottom: 20,
         color: '#000063',
+        marginTop:50,
+        fontFamily:'serif'
     },
     cardContainer: {
         marginHorizontal: 10,
@@ -124,7 +124,7 @@ const CardStyle = StyleSheet.create({
         backgroundColor: 'white',
         borderBottomEndRadius: 10,
         justifyContent: 'space-between',
-        elevation: 10,
+        elevation: 50,
         borderWidth: 2,
         borderColor: '#401abc',
         borderBottomWidth: 6,
@@ -196,7 +196,6 @@ const CardStyle = StyleSheet.create({
         minHeight: 180,
         maxWidth: '95%',
         marginLeft: 5,
-        marginTop: 2,
         marginRight: 10,
         borderRadius: 20,
     },
