@@ -4,14 +4,25 @@ import { MaterialCommunityIcons,Ionicons,Feather,FontAwesome } from '@expo/vecto
 
 const Home = () => {
   return (
-
-    <View>
-      <View style={styles.dynamiccontainer}>
-        <View style={{ flex: 3, fontSize: 25, fontFamily: 'sans-serif' }}><Text style={styles.dc1}>Health Savings Account</Text>
-          <Text style={{ paddingLeft: 10, textAlign: 'left' }}>Employer Name</Text>
+    <View style={styles.outerContainer}>
+      <View style={styles.title}>
+        <Text style={{fontSize:19, fontWeight:'500', fontFamily:'sans-serif-condensed'}}>Your Accounts</Text>
+      </View>
+      <View style={styles.fundInfo}>
+        <View style={{marginTop:15,marginRight:'24%'}}>
+          <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', paddingBottom: 3, fontFamily: 'sans-serif-condensed'}}>Emergency Savings Fund</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>ESFM_Deepak</Text>
         </View>
-        <View style={{ flex: 1.5, fontSize: 25, fontFamily: 'sans-serif' }}><Text style={styles.dc2}>5000</Text></View>
-        <View style={{ flex: 0.5, paddingTop: 6 }}><MaterialCommunityIcons style={styles.dc3} name="greater-than" size={20} color="orange" /></View>
+        <View>
+          <Text style={{marginTop:20, fontSize:20,marginRight:10,fontFamily: 'sans-serif-condensed', fontWeight:'bold'}}>$981.95</Text>
+        </View>
+      </View>
+      <View style={styles.todoitem}>
+        <Text style={{fontSize:18, fontWeight:'500', fontFamily:'sans-serif-condensed'}}>TO DO</Text>
+      </View>
+      <View style={styles.todoInfo}>
+        <Text style={{fontSize:20, paddingBottom:10, fontWeight:'bold', fontFamily:'sans-serif-condensed'}}>You are all set!</Text>
+        <Text style={{fontSize:18, paddingTop:5, fontFamily:'sans-serif-condensed'}}>You have nothing on your to do list.</Text>
       </View>
     </View>
   );
@@ -19,11 +30,57 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
-dc1:{ paddingTop:15,textAlign:'center',color:'blue',fontSize:20,fontFamily:'sans-serif',borderWidth:2,borderColor:'red'},
-  dc2:{ paddingTop:15,textAlign:'left',color:'blue',fontSize:20,fontFamily:'sans-serif',borderWidth:2,borderColor:'red'},
-  dc3:{ alignItems:'flex-end', paddingTop:15,borderWidth:2,borderColor:'red'},
-    dynamiccontainer:{height:100,flexDirection:'row',borderBottomColor:'#E1D8D8', borderBottomWidth:5},
-
+  outerContainer:{
+    flex:1,
+    backgroundColor:'#d4d4d4'
+  },
+  title:{
+    height:60,
+    backgroundColor:'white',
+    marginTop:15,
+    marginLeft:10,
+    marginRight:10,
+    alignItem:'center',
+    justifyContent:'center',
+    padding:10,
+    elevation:5
+  },
+  fundInfo:{
+    height:100,
+    flexDirection:'row',
+    backgroundColor:'white',
+    marginTop:5,
+    marginLeft:10,
+    marginRight:10,
+    alignItem:'center',
+    justifyContent:'center',
+    paddingLeft:10,
+    elevation:5
+  },
+  todoitem:{
+    height:60,
+    backgroundColor:'white',
+    marginTop:15,
+    marginLeft:10,
+    marginRight:10,
+    alignItem:'center',
+    justifyContent:'center',
+    paddingLeft:10,
+    paddingTop:12,
+    paddingBottom:12,
+    elevation:5
+  },
+  todoInfo:{
+    height:105,
+    backgroundColor:'white',
+    marginTop:1,
+    marginLeft:10,
+    marginRight:10,
+    alignItem:'center',
+    justifyContent:'center',
+    paddingLeft:10,
+    elevation:5
+  }
 });
 
 export default Home;

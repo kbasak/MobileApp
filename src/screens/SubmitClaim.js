@@ -18,7 +18,10 @@ const Claims = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isTextFocus, setIsTextFocus] = useState(false);
   const [isClaimFocus, setIsClaimFocus] = useState(false);
-  const hideModal = () => setpopupVisible(() => !popupVisible);
+  const hideModal = () => {
+    setpopupVisible(() => !popupVisible)
+    clear();
+  };
   const clear = () => {
     setClaim("");
     setAmount("");
