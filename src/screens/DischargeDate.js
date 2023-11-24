@@ -40,7 +40,7 @@ function DischargeDate() {
                         onChange={onChange}
                     />
                 )}
-                <AntDesign onPress={showDatepicker} name="calendar" size={40} color="#5c0bff" style={{paddingLeft:10}} />
+                <AntDesign onPress={showDatepicker} name="calendar" size={40} color="#ff4400" style={{paddingLeft:10}} />
             </View>
     );
 }
