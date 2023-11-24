@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
-// import { Icon } from 'react-native-vector-icons/Icon';
 import { Ionicons } from '@expo/vector-icons'
 
 function SettingsScreen() {
@@ -158,3 +157,5 @@ const styles = StyleSheet.create({
     }
 
 })
+
+// test comment for checking some changes in github
