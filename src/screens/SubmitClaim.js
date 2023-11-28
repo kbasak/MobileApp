@@ -7,7 +7,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import PrimaryButton from '../components/PrimaryButton';
 import AdmissionDate from './AdmissionDate';
 import DischargeDate from './DischargeDate';
-import { Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Claims = () => {
   const [claim, setClaim] = useState("");

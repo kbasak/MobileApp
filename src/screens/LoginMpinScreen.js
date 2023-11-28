@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, Button,Image , Alert, StyleSheet, ImageBackground } from 'react-native';
+import Modal from "react-native-modal";
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import PrimaryButton from '../components/PrimaryButton';
 
 const LoginMpinScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [mpin, setMpin] = useState('');
     const [isMpinMode, setIsMpinMode] = useState(false);
+
+    const [popupVisible, setpopupVisible] = useState(false);
+
+    const hideModal = () => {
+        setpopupVisible(() => !popupVisible)
+    };
 
     const staticUserData = {
         userName: 'staticUser',
@@ -38,7 +47,7 @@ const LoginMpinScreen = ({ navigation }) => {
                 }
                 );
             } else {
-                Alert.alert('Invalid MPIN');
+                setpopupVisible(true);
             }
         } else {
             if (userName === staticUserData.userName && password === staticUserData.password) {
@@ -47,7 +56,7 @@ const LoginMpinScreen = ({ navigation }) => {
                     routes: [{ name: 'BottomTabStack' }],
                 });
             } else {
-                Alert.alert('Invalid credentials');
+                setpopupVisible(true);
             }
         }
     }; //------ the above code ensures that a logged in user won't be able to go back to login screen without logging out.
@@ -75,7 +84,7 @@ const LoginMpinScreen = ({ navigation }) => {
                         style={styles.input}
                     />
                     <View style={styles.button}>
-                        <Button title="Submit MPIN" onPress={handleLogin} />
+                        <Button color='blue' title="Submit MPIN" onPress={handleLogin} />
                     </View>
                 </View>
             ) : (
@@ -94,14 +103,36 @@ const LoginMpinScreen = ({ navigation }) => {
                         style={styles.input}
                     />
                     <View style={styles.button}>
-                        <Button style={styles.button} title="Login" onPress={handleLogin} />
+                        <Button style={styles.button} color='blue' title="Login" onPress={handleLogin} />
                     </View>
                 </View>
             )}
             <View style={styles.button}>
-                <Button color='orange' title={isMpinMode ? "Switch to Username/Password" : "Switch to MPIN"} onPress={() => setIsMpinMode(!isMpinMode)} />
+                <Button color='#ff6200' title={isMpinMode ? "Switch to Username/Password" : "Switch to MPIN"} onPress={() => setIsMpinMode(!isMpinMode)} />
             </View>
+            <View style={styles.centeredView}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    isVisible={popupVisible} >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Entypo name="circle-with-cross" size={105} color="#ff0000" onPress={hideModal} style={{ marginBottom: 30, marginTop: 5 }} />
+                            <Text style={{
+                                fontSize: 22,
+                                paddingBottom: 10,
+                                fontFamily: 'serif',
+                                textAlign:'center'
+                            }}>
+                                {!isMpinMode ? "Invalid UserName or Password" : "OOPSS... Invalid MPIN!!!"}
+                            </Text>
+                            <PrimaryButton onPress={hideModal}>Try Again</PrimaryButton>
+                        </View>
+                    </View>
+                </Modal>
+                </View>
             </View>
+            
         </View>
         </ImageBackground>
     );
@@ -147,9 +178,34 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     button: {
-        margin: 6,
+        borderRadius: 28,
+        margin: 4,
+        overflow: "hidden",
+        margin:10,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-    }
+        marginTop: 22,
+      },
+      modalView: {
+        minWidth:'90%',
+        minHeight:'35%',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        justifyContent:'center',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 10,
+      },
 });
 
 export default LoginMpinScreen;

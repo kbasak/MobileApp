@@ -156,7 +156,7 @@ function MyDrawer(){
      <Drawer.Navigator drawerContent={(props)=> <CustomDrawer{...props}/>}
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#000ac7', //Set Header color
+            backgroundColor: '#000455', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
         }}>
@@ -182,7 +182,7 @@ function MyDrawer(){
             drawerLabel: 'Setting',
             title: 'Settings',
             headerTitleStyle: {
-              color: '#ffd620ff',
+              color: '#fff',
               fontWeight:'700',
               fontSize:22,
               marginLeft:-16,
@@ -197,7 +197,7 @@ function MyDrawer(){
             drawerLabel: 'Submit Claim',
             title: 'Submit Claim',
             headerTitleStyle: {
-              color: '#ffd620ff',
+              color: '#fff',
               fontWeight:'700',
               fontSize:22,
               marginLeft:-16,
@@ -212,7 +212,7 @@ function MyDrawer(){
             drawerLabel: 'My Profile',
             title: 'My Profile',
             headerTitleStyle: {
-              color: '#ffd620ff',
+              color: '#fff',
               fontWeight:'700',
               fontSize:22,
               marginLeft:-16,
@@ -227,7 +227,7 @@ function MyDrawer(){
             drawerLabel: 'My Cards',
             title: 'My Cards',
             headerTitleStyle: {
-              color: '#ffd620ff',
+              color: '#fff',
               fontWeight:'700',
               fontSize:22,
               marginLeft:-16,
