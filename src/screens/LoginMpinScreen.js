@@ -168,9 +168,11 @@ const styles = StyleSheet.create({
      shadowRadius: 2, 
      },
      text: {
-         color: 'orange',
+         color: '#ff6200',
          fontSize: 30,
-         marginBottom: 5
+         marginBottom: 5,
+         fontWeight:'500',
+         textAlign:'center'
      },
     input: {
         marginBottom: 10,
