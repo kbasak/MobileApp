@@ -2,19 +2,25 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-function EmergencyFund({ setScreen }) {
+function FundDetails({ setScreen, fund }) {
     function back() {
         setScreen(false);
     }
     return (
         <View style={styles.outerContainer}>
             <View style={[styles.fundInfo, { height: 80, backgroundColor: '#0a0072' }]}>
-                <View style={{ marginLeft: '-20%', marginTop: '5%' }}>
-                    <Ionicons name="arrow-back-outline" size={36} color="#ffffff" onPress={back} />
-                </View>
+                {
+                    (fund.id === 1) ?
+                        <View style={{ marginLeft: '-20%', marginTop: '5%' }}>
+                            <Ionicons name="arrow-back-outline" size={36} color="#ffffff" onPress={back} />
+                        </View> :
+                        <View style={{ marginLeft: '-30%', marginTop: '5%' }}>
+                            <Ionicons name="arrow-back-outline" size={36} color="#ffffff" onPress={back} />
+                        </View>
+                }                
                 <View style={{ marginTop: 8, marginLeft: '4%' }}>
-                    <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', paddingBottom: 3, fontFamily: 'sans-serif-condensed' }}>Emergency Savings Fund</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff' }}>ESFM_Deepak</Text>
+                    <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', paddingBottom: 3, fontFamily: 'sans-serif-condensed' }}>{fund.fundName}</Text>
+                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff' }}>{fund.EmpName}</Text>
                 </View>
             </View>
             <ScrollView>
@@ -24,7 +30,7 @@ function EmergencyFund({ setScreen }) {
                 <View style={[styles.fundInfo, { marginTop: 0 }]}>
                     <View style={{ marginTop: 15, paddingLeft: '6%' }}>
                         <Text style={{ fontSize: 16, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: -36 }}>Total Account Value</Text>
-                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', marginLeft: -36 }}>$981.95</Text>
+                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', marginLeft: -36 }}>{fund.accValue}</Text>
                     </View>
                     <View style={{ marginTop: 24, marginLeft: '50%' }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
@@ -105,7 +111,7 @@ function EmergencyFund({ setScreen }) {
     );
 }
 
-export default EmergencyFund;
+export default FundDetails;
 
 const styles = StyleSheet.create({
     outerContainer: {

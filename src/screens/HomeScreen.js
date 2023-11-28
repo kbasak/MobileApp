@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import EmergencyFund from './EmergencyFund';
+import FundDetails from './FundDetails';
 import HomeItem from './HomeItem';
 
 const Home = () => {
   const [screen, setScreen] = useState(false);
+  const [fund, setFund] = useState([]);
+  //console.log(fund)
   return (
     <>
-      {!screen ? <HomeItem setScreen={setScreen}/> : <EmergencyFund setScreen={setScreen}/>}
+      {!screen ? <HomeItem setScreen={setScreen} setFund={setFund}/> : <FundDetails setScreen={setScreen} setFund={setFund} fund={fund}/>}
     </>
   );
 
