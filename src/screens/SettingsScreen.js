@@ -110,10 +110,15 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginTop: 4,
+        marginTop: '5%',
+        marginLeft:'5%',
+        marginRight:'5%',
         justifyContent: 'center',
         alignContent: 'center',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: '#d3d1d1',
+        elevation:1,
+        borderRadius:12,
+        overflow:'hidden'
     },
     searchContainer: {
         flex: 1,

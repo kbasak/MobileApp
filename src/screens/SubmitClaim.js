@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Pressable } from 'react-native';
 import Modal from "react-native-modal";
 import { TextInput } from 'react-native-gesture-handler';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import PrimaryButton from '../components/PrimaryButton';
+import AdmissionDate from './AdmissionDate';
+import DischargeDate from './DischargeDate';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Claims = () => {
   const [claim, setClaim] = useState("");
@@ -15,7 +18,10 @@ const Claims = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isTextFocus, setIsTextFocus] = useState(false);
   const [isClaimFocus, setIsClaimFocus] = useState(false);
-  const hideModal = () => setpopupVisible(() => !popupVisible);
+  const hideModal = () => {
+    setpopupVisible(() => !popupVisible)
+    clear();
+  };
   const clear = () => {
     setClaim("");
     setAmount("");
@@ -50,13 +56,11 @@ const Claims = () => {
     return null;
   };
 
-  var claimDetails = 'Claim Details';
-
   return (
     <TouchableWithoutFeedback onPress={onSubmitEditing}>
-      <View style={{ flex: 1, padding: 12 }}>
+      <KeyboardAvoidingView behavior='position' style={{ flex: 1, padding: 12 }}>
 
-        <View style={{ margin: 20, maxHeight: 135, backgroundColor: 'white' }}>
+        <View style={styles.itemDesign}>
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Choose Treatment Name: </Text>
           </View>
@@ -93,7 +97,24 @@ const Claims = () => {
             />
           </View>
         </View>
-        <View style={{ margin: 20, maxHeight: 125, backgroundColor: 'white' }}>
+
+        <View style={styles.itemDesign}>
+
+          <View style={styles.containerText}>
+            <Text style={styles.textFormat}>Admission Date: </Text>
+          </View>
+          <AdmissionDate/>
+        </View>
+
+        <View style={styles.itemDesign}>
+
+          <View style={styles.containerText}>
+            <Text style={styles.textFormat}>Discharge Date: </Text>
+          </View>
+          <DischargeDate />
+        </View>
+
+        <View style={styles.itemDesign}>
 
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Claim Details: </Text>
@@ -107,7 +128,7 @@ const Claims = () => {
         </View>
 
 
-        <View style={{ margin: 20, maxHeight: 125, backgroundColor: 'white' }}>
+        <View style={styles.itemDesign}>
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Claim Amount: </Text>
           </View>
@@ -130,15 +151,27 @@ const Claims = () => {
           </View>
         </View>
 
-        <View>
-          <Modal isVisible={popupVisible}>
-            <View style={styles.modal}>
-              <Text style={{ fontSize: 26, paddingBottom: 10, paddingTop: 10, fontFamily: 'sans-serif' }}><Text style={{ color: '#00a800', fontWeight: 'bold' }}>Congrats!</Text> You have Submitted Your Claim Successfully for <Text style={{ color: '#ff8800ff', fontWeight: 'bold' }}>${amount}</Text></Text>
-              <PrimaryButton onPress={hideModal}>Okay</PrimaryButton>
+        <View style={styles.centeredView}>
+        
+          <Modal
+            animationType="slide"
+            transparent={true}
+            isVisible={popupVisible} >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+              <MaterialCommunityIcons name="checkbox-multiple-marked-circle" size={125} color="#26c248" onPress={hideModal} style={{marginBottom:5, marginTop:15}}/>
+              <Text style={{ 
+                fontSize: 22, 
+                paddingBottom: 10,  
+                fontFamily: 'serif',
+                }}> 
+                <Text style={{ color: '#13b213', fontWeight: 'bold' }}>Congrats!</Text> You have Submitted Your Claim Successfully for <Text style={{ color: '#ff7300ff', fontWeight: 'bold' }}>${amount}</Text></Text>
+              <PrimaryButton onPress={hideModal}>Okay</PrimaryButton>             
+              </View>
             </View>
           </Modal>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
 
   );
@@ -151,25 +184,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 10,
     padding: 5,
-    minHeight: 55,
-    fontSize: 20,
-
-  },
-  text: { height: 100, borderWidth: .5 },
-  modal: {
+    marginLeft:15,
+    marginBottom:5,
+    minHeight: 40,
+    fontSize: 18,
+    maxWidth:'90%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "white",
-    height: 200,
-    width: '80%',
-    borderRadius: 25,
-    borderWidth: 2,
-    elevation: 4,
-    borderColor: '#313030',
-    marginTop: 40,
-    marginLeft: 40,
-    padding: 8
   },
+  text: { height: 100, borderWidth: .5 },
   container: {
     backgroundColor: 'white',
     padding: 0,
@@ -180,11 +203,14 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   dropdown: {
-    height: 55,
+    minHeight: 40,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
+    marginLeft:15,
+    marginBottom:5,
+    maxWidth:'90%'
   },
   icon: {
     marginRight: 5,
@@ -213,23 +239,57 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonsContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop:20
   },
   buttonContainer: {
     flex: 1
   },
   containerText: {
-    margin: 5,
+    margin: 8,
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
-    width: "90%",
+    width: "80%",
   },
   textFormat: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "700",
     color: '#00006d',
-    fontFamily: 'notoserif'
+    fontFamily: 'notoserif',
+    marginLeft:10
+  },
+  itemDesign:{
+    marginTop:20,
+    marginLeft:20,
+    marginRight:20,
+    maxHeight: 125, 
+    backgroundColor: 'white',
+    borderRadius:12,
+    overflow:'hidden'
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    minWidth:'90%',
+    minHeight:'35%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    justifyContent:'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 10,
   },
 });
 

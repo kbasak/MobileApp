@@ -73,7 +73,7 @@ const Profile = () => {
             </View>
             <View style={styles.container}>
                 <TextInput
-                    style={[styles.textStyle, { borderColor: emailEditable ? '#ffa600' : 'gray' },
+                    style={[styles.textStyle, { borderColor: emailEditable ? '#ffa600' : '#efeded' },
                     {color: emailEditable ? '#000000' : '#00000094'}]}
                     value={email}
                     editable={(emailEditable)}
@@ -89,7 +89,7 @@ const Profile = () => {
             </View>
             <View style={styles.container}>
                 <TextInput
-                    style={[styles.textStyle, { borderColor: phoneEditable ? '#ffa600' : 'gray' },
+                    style={[styles.textStyle, { borderColor: phoneEditable ? '#ffa600' : '#efeded' },
                     {color: phoneEditable ? '#000000' : '#00000094'}]}
                     value={phone}
                     editable={(phoneEditable)}
@@ -106,7 +106,7 @@ const Profile = () => {
             <View style={styles.container}>
                 <TextInput
                     style={[styles.textStyle, { 
-                        borderColor: dobEditable ? '#ffa600' : 'gray'
+                        borderColor: dobEditable ? '#ffa600' : '#efeded'
                     },{color: dobEditable ? '#000000' : '#00000094'}]}
                     value={dob}
                     editable={(dobEditable)}
@@ -122,7 +122,7 @@ const Profile = () => {
             </View>
             <View style={styles.container}>
                 <TextInput
-                    style={[styles.textStyle, { borderColor: addressEditable ? '#ffa600' : 'gray' },
+                    style={[styles.textStyle, { borderColor: addressEditable ? '#ffa600' : '#efeded' },
                     {color: addressEditable ? '#000000' : '#00000094'}]}
                     value={address}
                     editable={(addressEditable)}
