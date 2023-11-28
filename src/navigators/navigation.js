@@ -163,66 +163,94 @@ function MyTabs() {
   );
 }
 
-function MyDrawer() {
-  return (
-
-    <Drawer.Navigator drawerContent={(props) => <CustomDrawer{...props} />}
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#000455', //Set Header color
-        },
-        headerTintColor: '#fff', //Set Header text color
-      }}>
-      <Drawer.Screen
-        name="HomeScreenStack"
-        options={{
-          drawerLabel: 'Home Screen Option',
-          title: 'Home Screen',
-        }}
-        component={MyTabs}
-      />
-      <Drawer.Screen
-        name="SettingScreenStack"
-        options={{
-          drawerLabel: 'Setting Screen Option',
-          title: 'Setting Screen',
-        }}
-        component={SettingScreenStack}
-      />
-      <Drawer.Screen
-        name="Submit Claim"
-        options={{
-          drawerLabel: 'Submit Claim',
-          title: 'Submit Claim',
-        }}
-        component={SubmitClaimStack}
-      />
-      <Drawer.Screen
-        name="My Profile"
-        options={{
-          drawerLabel: 'My Profile',
-          title: 'My Profile',
-        }}
-        component={MyProfileStack}
-      />
-      <Drawer.Screen
-        name="My Cards"
-        options={{
-          drawerLabel: 'My Cards',
-          title: 'My Cards',
-        }}
-        component={MyCardsStack}
-      />
-      <Drawer.Screen
-        name="Help & Support"
-        options={{
-          drawerLabel: 'Help & Support',
-          title: 'Help & Support',
-        }}
-        component={HelpAndSupportStack}
-      />
-    </Drawer.Navigator>
-
+function MyDrawer(){  
+  return(
+    
+     <Drawer.Navigator drawerContent={(props)=> <CustomDrawer{...props}/>}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#000455', //Set Header color
+          },
+          headerTintColor: '#fff', //Set Header text color
+        }}>
+        <Drawer.Screen
+          name="HomeScreenStack"
+          options={{
+            drawerLabel: 'Home',
+            title: 'inspira',
+            headerTitleStyle: {
+              color: '#ffd620ff',
+              fontWeight:'bold',
+              fontSize:24,
+              marginLeft:-16,
+              textDecorationLine:'underline',
+              fontFamily:'sans-serif-condensed'
+            },
+          }}
+          component={MyTabs}
+        />
+        <Drawer.Screen
+          name="SettingScreenStack"
+          options={{
+            drawerLabel: 'Setting',
+            title: 'Settings',
+            headerTitleStyle: {
+              color: '#fff',
+              fontWeight:'700',
+              fontSize:22,
+              marginLeft:-16,
+              fontFamily:'sans-serif-condensed'
+            },
+          }}
+          component={SettingScreenStack}
+        />
+         <Drawer.Screen
+          name="Submit Claim"
+          options={{
+            drawerLabel: 'Submit Claim',
+            title: 'Submit Claim',
+            headerTitleStyle: {
+              color: '#fff',
+              fontWeight:'700',
+              fontSize:22,
+              marginLeft:-16,
+              fontFamily:'sans-serif-condensed'
+            },
+          }}
+          component={SubmitClaimStack}
+        />
+          <Drawer.Screen
+          name="My Profile"
+          options={{
+            drawerLabel: 'My Profile',
+            title: 'My Profile',
+            headerTitleStyle: {
+              color: '#fff',
+              fontWeight:'700',
+              fontSize:22,
+              marginLeft:-16,
+              fontFamily:'sans-serif-condensed'
+            },
+          }}
+          component={MyProfileStack}
+        />
+         <Drawer.Screen
+          name="My Cards"
+          options={{
+            drawerLabel: 'My Cards',
+            title: 'My Cards',
+            headerTitleStyle: {
+              color: '#fff',
+              fontWeight:'700',
+              fontSize:22,
+              marginLeft:-16,
+              fontFamily:'sans-serif-condensed'
+            },
+          }}
+          component={MyCardsStack}
+        />
+      </Drawer.Navigator>  
+      
   );
 
 }
