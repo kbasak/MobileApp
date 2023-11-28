@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import { StyleSheet} from 'react-native';
+import { StatusBar, StyleSheet} from 'react-native';
 import LoginMpinScreen from './src/screens/LoginMpinScreen';
 import MyTabs from './src/navigators/navigation'
 
@@ -23,6 +23,7 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   return (
     <NavigationContainer>
+      <StatusBar style='dark'/>
     <Stack.Navigator
       initialRouteName="LoginMpin" style={styles.container}
       screenOptions={{headerShown: false}}>

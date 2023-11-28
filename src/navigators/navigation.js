@@ -35,20 +35,22 @@ const CustomDrawer = props => {
       <DrawerContentScrollView {...props}>
         <View style={{
           flexDirection: 'row', justifyContent: 'space-between', padding: 20
-          , alignItems: 'center', backgroundColor: '#f4511e', marginBottom: 20
+          , alignItems: 'center', backgroundColor: '#000455', marginTop:-4
         }}>
           <View>
-            <Text style={{ color: '#fff' }}>Karthik</Text>
-            <Text style={{ color: '#fff' }}>Karthik@gmail.com</Text>
+            <Text style={{ color: '#fff',fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik</Text>
+            <Text style={{ color: '#fff',fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik@gmail.com</Text>
           </View>
           <Image source={{ uri: 'https://www.html.am/images/html-codes/links/boracay-white-beach-sunset-300x225.jpg' }}
             style={{ width: 60, height: 60, borderRadius: 30 }} />
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <TouchableOpacity style={{ height: 60, backgroundColor: '#f4511e', alignItems: 'center', justifyContent: 'center' }}
+      <TouchableOpacity style={{ height: 60, backgroundColor: '#000455', alignItems: 'center', justifyContent: 'center' }}
         onPress={handleLogout} >
-        <Text style={{ color: 'white' }} >Logout</Text>
+        <Text style={{
+          color: 'white', fontFamily: 'sans-serif-condensed', fontWeight: '600', fontSize: 18,
+        }} >Logout</Text>
       </TouchableOpacity>
     </View>
   );
