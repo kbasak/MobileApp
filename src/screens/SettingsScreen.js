@@ -16,7 +16,7 @@ function SettingsScreen() {
     ]
 
     const more_info = [
-        'Help',
+        'Help & Support',
         'About'
     ]
 
