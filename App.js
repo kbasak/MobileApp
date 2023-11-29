@@ -23,7 +23,7 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar style='dark'/>
+      <StatusBar backgroundColor='#000c5b'/>
     <Stack.Navigator
       initialRouteName="LoginMpin" style={styles.container}
       screenOptions={{headerShown: false}}>

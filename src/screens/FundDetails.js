@@ -23,7 +23,7 @@ function FundDetails({ setScreen, fund }) {
                     <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff' }}>{fund.EmpName}</Text>
                 </View>
             </View>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[styles.title, { marginTop: 5, backgroundColor: '#f3f3f3' }]}>
                     <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
@@ -44,7 +44,7 @@ function FundDetails({ setScreen, fund }) {
                         <Text style={{ fontSize: 18, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: 10, marginRight: 30 }}>Employee Contributions</Text>
                     </View>
                     <View style={{ marginTop: 10, marginLeft: 30, marginRight: 50, flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>$0.00</Text>
+                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>{fund.empCont}</Text>
                         <Ionicons style={{ paddingLeft: 15 }} name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View>
                 </View>
@@ -53,7 +53,7 @@ function FundDetails({ setScreen, fund }) {
                         <Text style={{ fontSize: 18, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: 10, marginRight: 6 }}>Employer Contributions</Text>
                     </View>
                     <View style={{ marginTop: 10, marginLeft: 30, marginRight: 50, flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>$1000.00</Text>
+                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>{fund.employerCont}</Text>
                         <Ionicons style={{ paddingLeft: 15 }} name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View>
                 </View>
@@ -79,7 +79,7 @@ function FundDetails({ setScreen, fund }) {
                 <View style={[styles.fundInfo, { marginTop:0, height: 75 }]}>
                     <View style={{ marginTop: 10, paddingLeft: '3%' }}>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '50%' }}>Interest Rate</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>0.05%</Text>
+                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.intRate}</Text>
                     </View>
                     <View style={{ marginTop: 18, marginLeft: 30, marginRight: 25, }}>
                         <Ionicons style={{ paddingLeft: 25 }} name="ios-information-circle-outline" size={40} color="#00806b" />
@@ -88,7 +88,7 @@ function FundDetails({ setScreen, fund }) {
                 <View style={[styles.fundInfo, { marginTop: 2.5, height: 75, borderBottomColor:'black', borderBottomWidth:1.5 }]}>
                     <View style={{ marginTop: 10, paddingLeft: '3%' }}>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '32%' }}>Interest Earned(Year to date)</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>$0.08</Text>
+                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.intEarned}</Text>
                     </View>
                     <View style={{ marginTop: 18, marginLeft: 0, marginRight: 30, }}>
                         <Ionicons style={{ paddingLeft: 20 }} name="ios-information-circle-outline" size={40} color="#00806b" />
@@ -97,7 +97,7 @@ function FundDetails({ setScreen, fund }) {
                 <View style={[styles.fundInfo, { marginTop: 1, height: 75 }]}>
                     <View style={{ marginTop: 10, paddingLeft: '10%' }}>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '30%' }}>Annual Percentage Yield(APY)</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>0.05%</Text>
+                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.apy}</Text>
                     </View>
                     <View style={{ marginTop: 18, marginLeft: 15, marginRight: 58, }}>
                         <Ionicons style={{ paddingLeft: 12 }} name="ios-information-circle-outline" size={40} color="#00806b" />

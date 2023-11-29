@@ -35,7 +35,7 @@ const HomeItem = ({ setScreen, setFund }) => {
                     </View>
                 </Pressable>
                 <View>
-                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>$981.95</Text>
+                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[0].accValue}</Text>
                 </View>
             </View> 
             <View style={styles.fundInfo}>
@@ -46,7 +46,7 @@ const HomeItem = ({ setScreen, setFund }) => {
                     </View>
                 </Pressable>
                 <View>
-                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>$1265.55</Text>
+                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[1].accValue}</Text>
                 </View>
             </View>               
             <View style={[styles.todoitem, { backgroundColor: '#f3f3f3' }]}>
