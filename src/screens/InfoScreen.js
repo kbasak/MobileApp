@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,ScrollView, SafeAreaView, FlatList } from 'react-native';
  
 const Info = () => {
   const [expandedElement, setExpandedElement] = useState(null);
@@ -46,8 +46,8 @@ const Info = () => {
     {
       heading: 'Services',
       description: [
-        {
-          subHeading: 'Custody Solutions'},
+        
+        {subHeading: 'Custody Solutions'},
         {subHeading:'Investment Management'},
         {subHeading:'Tailored Retirement Planning'},
         {subHeading:'Wealth Preservation Solutions'}
@@ -96,11 +96,11 @@ const Info = () => {
         },
         {
           subHeading: 'How do I request a distribution on an account rolled over from a previous employer?',
-          subDescription: ['We provide Custody Solutions, Investment Management, Tailored Retirement Planning, and Wealth Preservation Solutions.'],
+          subDescription: ['It’s easy. Once you claim your account, simply login to the MTC Investment Portal to complete and submit the distribution request form. View our video for more information about taking a distribution.']
         },
         {
-          subHeading: 'How can I contact customer service?',
-          subDescription: ['You can contact our customer service by phone or email. Check the "Contact Information" section for details.'],
+          subHeading: 'What tax forms does Millennium Trust send out?',
+          subDescription: ['MTC sends out 1099Rs to IRA owners by January 30 for the previous tax year. IRA tax form 5498 is generated and mailed out to account owners typically by May 31. For taxable accounts 1099-DIVs, and 1099-INTs are sent by January 30 for the previous tax year.'],
         },
         // Add more questions and answers as needed
       ],
@@ -111,7 +111,9 @@ const Info = () => {
     if (expandedElement === index) {
       setExpandedElement(null);
       setExpandedSubElement(null);
-    } else {
+    }
+    
+     else {
       setExpandedElement(index);
       setExpandedSubElement(null);
     }
@@ -119,40 +121,38 @@ const Info = () => {
  
   const toggleSubElement = (subIndex) => {
     if (expandedSubElement === subIndex) {
-      console.log(subIndex);
       setExpandedSubElement(null);
     } else {
-      console.log(subIndex);
       setExpandedSubElement(subIndex);
     }
   };
  
   return (
     <SafeAreaView>
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       {data.map((item, index) => (
         <View key={index} style={{ backgroundColor: 'white',borderBottomWidth: 3,
         borderBottomColor: '#DDDDDD',
         padding: 10, }}>
-          <TouchableOpacity onPress={() => toggleElement(index)}>
+          <TouchableOpacity onPress={() =>
+            { toggleElement(index)}}>
             <Text style={styles.heading}>{item.heading}</Text>
           </TouchableOpacity>
           {expandedElement === index && (
-            <View >
+            <ScrollView>
               {Array.isArray(item.description) ? (
                 item.description.map((subItem, subIndex) => (
                   <View key={subIndex} style={{ backgroundColor: 'white',borderWidth: 3,
                   borderColor: '#DDDDDD',
                   padding: 10, }}>
                     <TouchableOpacity onPress={() => toggleSubElement(subIndex)}  >
-                      <Text style={styles.subHeading}>{subItem.subHeading}</Text>
+                      <Text style={styles.subHeading} onPress={() =>{toggleSubElement(subIndex)}}>{subItem.subHeading}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity   style={{ backgroundColor: 'white',}}>
-                      <Text style={styles.service}>{subItem.service}</Text>
-                    </TouchableOpacity>
-                    {expandedSubElement === subIndex && (
-                   
-                      <View style={styles.subDescriptionContainer}>
+                    {/* <View>
+                      <Text style={styles.service} >{subItem.subService} </Text>
+                    </View> */}
+                    {index===2?'':expandedSubElement === subIndex && (
+                     <View style={styles.subDescriptionContainer}>
                         {subItem.subDescription.map((line, lineIndex) => (
                           <Text key={lineIndex} style={styles.subDescription}>
                             {line}
@@ -166,15 +166,17 @@ const Info = () => {
               ) : (
                 <Text style={styles.description}>{item.description}</Text>
               )}
-            </View>
+            </ScrollView>
           )}
         </View>
       ))}
-    </ScrollView>
+    </View>
     </SafeAreaView>
   );
 };
- 
+
+
+
 const styles = StyleSheet.create({
   container: {
     padding: 16,
@@ -213,10 +215,12 @@ const styles = StyleSheet.create({
   },
   subDescriptionContainer: {
     marginLeft: 26,
+    
   },
   subDescription: {
     fontSize: 16,
     marginBottom: 8,
+    
   },
 });
  
