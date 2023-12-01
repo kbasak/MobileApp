@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Text, View, Image } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import InfoScreen from '../screens/InfoScreen';
+import ManageScreen from '../screens/ManageScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ClaimScreen from '../screens/SubmitClaim';
 import ProfileScreen from '../screens/MyProfile';
@@ -133,7 +134,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Manage"
-        component={InfoScreen}
+        component={ManageScreen}
         options={{
           tabBarLabel: 'Manage',
           tabBarIcon: ({ color }) => (
