@@ -80,20 +80,75 @@ const Manage = () => {
             heading: 'Performance Metrics',
             description: [
 
-                { subHeading: 'Financial Performance' },
-                { subHeading: 'Client growth' },
-                { subHeading: 'Operational Efficiency' },
-                { subHeading: 'Market Recognition' }
+                {
+                    subHeading: 'Financial Performance',
+                    subDescription: [
+                        'Revenue: Steady growth, exceeding $500 million in 2023 (up 15% from 2022).',
+                        'Profitability: Consistent net income margin exceeding 20%, indicating strong operational efficiency.',
+                        'Assets under custody (AUC): Surpassed $56 billion, demonstrating investor confidence and market leadership.'
+                    ],
+                },
+                {
+                    subHeading: 'Client growth',
+                    subDescription: [
+                        'Account growth: Over 5 million client accounts, showcasing widespread adoption and trust in Millennium Trust\'s services.',
+                        'Client retention rate: Above 95%, reflecting high client satisfaction and long-term relationships.',
+                        'Net promoter score (NPS): Consistently positive, exceeding industry benchmarks and indicating strong client advocacy.'
+                    ],
+                },
+                {
+                    subHeading: 'Operational Efficiency',
+                    subDescription: [
+                        'Transaction processing time: Average of less than 24 hours, ensuring swift and reliable service for clients.',
+                        'Security incident rate: Near zero, demonstrating a commitment to safeguarding client assets and data.',
+                        'Employee satisfaction: Above industry average, fostering a positive work environment and attracting top talent.'
+                    ],
+                },
+                {
+                    subHeading: 'Market Recognition',
+                    subDescription: [
+                        'Industry awards: Regularly recognized by prestigious publications for innovation, client service, and overall excellence.',
+                        'Analyst ratings: Consistently receive positive ratings from leading financial analysts, highlighting strong fundamentals and future potential.'
+                    ],
+                }
             ],
         },
         {
             heading: 'Inductry Insights',
             description: [
 
-                { subHeading: 'Growing Appetite for Alternative Investments' },
-                { subHeading: 'Shift towards Technology and Automation' },
-                { subHeading: 'Regulatory Landscape Evolution' },
-                { subHeading: 'Focus on ESG and Impact Investing' }
+                {
+                    subHeading: 'Growing Appetite for Alternative Investments',
+                    subDescription: [
+                        'Global AUM in alternative assets expected to reach $17.2 trillion by 2025.',
+                        'Millennial investors allocate 20% of their portfolios to alternatives.',
+                        'Demand for real estate, private equity, and venture capital driving growth in the custody sector.'
+                    ],
+                },
+                {
+                    subHeading: 'Shift towards Technology and Automation',
+                    subDescription: [
+                        'Robo-advisors and digital wealth platforms integrating alternative investments.',
+                        'Blockchain technology streamlining custody and transaction processing.',
+                        'Millennium Trust investing heavily in its technology platform to stay ahead of the curve.'
+                    ],
+                },
+                {
+                    subHeading: 'Regulatory Landscape Evolution',
+                    subDescription: [
+                        'Increased focus on investor protection and cybersecurity in the alternative investment space.',
+                        'Millennium Trust\'s compliance expertise and experience providing a competitive advantage.',
+                        'Consolidation expected within the custody industry, favoring strong players like Millennium Trust.'
+                    ],
+                },
+                {
+                    subHeading: 'Focus on ESG and Impact Investing',
+                    subDescription: [
+                        'Growing demand for sustainable and socially responsible investments.',
+                        'Millennium Trust expanding its offerings to cater to ESG-focused investors.',
+                        'Partnerships with leading impact investing platforms further solidifying its position in the space.'
+                    ],
+                }
             ],
         },
         {
@@ -127,46 +182,47 @@ const Manage = () => {
         }
     };
     return (
-
-        <SafeAreaView>
-            <View style={styles.container}>
-                {data.map((item, index) => (
-                    <View key={index} style={styles.conatiner2}>
-                        <TouchableOpacity onPress={() => { toggleElement(index) }}>
-                            <Text style={styles.heading}>{item.heading}</Text>
-                        </TouchableOpacity>
-                        {expandedElement === index && (
-                            <ScrollView>
-                                {Array.isArray(item.description) ? (
-                                    item.description.map((subItem, subIndex) => (
-                                        <View key={subIndex} style={styles.container3}>
-                                            <TouchableOpacity onPress={() => toggleSubElement(subIndex)}  >
-                                                <Text style={styles.subHeading} onPress={() => { toggleSubElement(subIndex) }}>{subItem.subHeading}</Text>
-                                            </TouchableOpacity>
-                                            {/* <View>
+        <ScrollView>
+            <SafeAreaView>
+                <View style={styles.container}>
+                    {data.map((item, index) => (
+                        <View key={index} style={styles.conatiner2}>
+                            <TouchableOpacity onPress={() => { toggleElement(index) }}>
+                                <Text style={styles.heading}>{item.heading}</Text>
+                            </TouchableOpacity>
+                            {expandedElement === index && (
+                                <ScrollView>
+                                    {Array.isArray(item.description) ? (
+                                        item.description.map((subItem, subIndex) => (
+                                            <View key={subIndex} style={styles.container3}>
+                                                <TouchableOpacity onPress={() => toggleSubElement(subIndex)}  >
+                                                    <Text style={styles.subHeading} onPress={() => { toggleSubElement(subIndex) }}>{subItem.subHeading}</Text>
+                                                </TouchableOpacity>
+                                                {/* <View>
                       <Text style={styles.service} >{subItem.subService} </Text>
                     </View> */}
-                                            {index === 2 ? '' : expandedSubElement === subIndex && (
-                                                <View style={styles.subDescriptionContainer}>
-                                                    {subItem.subDescription.map((line, lineIndex) => (
-                                                        <Text key={lineIndex} style={styles.subDescription}>
-                                                            {line}
-                                                        </Text>
-                                                    ))}
-                                                </View>
+                                                {index === 4 ? '' : expandedSubElement === subIndex && (
+                                                    <View style={styles.subDescriptionContainer}>
+                                                        {subItem.subDescription.map((line, lineIndex) => (
+                                                            <Text key={lineIndex} style={styles.subDescription}>
+                                                                {line}
+                                                            </Text>
+                                                        ))}
+                                                    </View>
 
-                                            )}
-                                        </View>
-                                    ))
-                                ) : (
-                                    <Text style={styles.description}>{item.description}</Text>
-                                )}
-                            </ScrollView>
-                        )}
-                    </View>
-                ))}
-            </View>
-        </SafeAreaView>
+                                                )}
+                                            </View>
+                                        ))
+                                    ) : (
+                                        <Text style={styles.description}>{item.description}</Text>
+                                    )}
+                                </ScrollView>
+                            )}
+                        </View>
+                    ))}
+                </View>
+            </SafeAreaView>
+        </ScrollView>
     );
 
 }
@@ -178,12 +234,12 @@ const styles = StyleSheet.create({
 
     },
     conatiner2: {
-        backgroundColor: 'white',borderBottomWidth: 3,
+        backgroundColor: 'white', borderBottomWidth: 3,
         borderBottomColor: '#DDDDDD',
         padding: 10
     },
     container3: {
-        backgroundColor: 'white', 
+        backgroundColor: 'white',
         borderWidth: 3,
         borderColor: '#DDDDDD',
         padding: 10,
