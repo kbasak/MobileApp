@@ -1,7 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, StyleSheet, Text, Pressable } from "react-native";
 
-const HomeItem = ({ setScreen, setFund }) => {
+function HomeItem({ setScreen, setFund }) {
 
     const funds = [
         {
@@ -15,41 +14,42 @@ const HomeItem = ({ setScreen, setFund }) => {
             intRate: '0.05%', intEarned: '$0.08', apy: '0.05%'
         },
     ];
+
     function fundDetails(id) {
-            setScreen(true)
-            funds.filter(fund => fund.id === id).map(filteredCard => (
-                setFund(filteredCard)
-            ))
+        setScreen(true)
+        funds.filter(fund => fund.id === id).map(filteredCard => (
+            setFund(filteredCard)
+        ))
     }
-    
+
     return (
         <View style={styles.outerContainer}>
             <View style={[styles.title, { backgroundColor: '#f3f3f3' }]}>
                 <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Your Accounts</Text>
-            </View>            
-            <View style={styles.fundInfo}>
-                <Pressable android_ripple={{color: '#a9fcf7ff'}} onPress={fundDetails.bind(this, funds[0].id)}>
-                    <View style={{ marginTop: 15, marginRight: '24%' }}>
-                        <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', paddingBottom: 3, fontFamily: 'sans-serif-condensed' }}>{funds[0].fundName}</Text>
-                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>{funds[0].EmpName}</Text>
+            </View>
+            <View style={[styles.fundInfo, { marginTop: 0 }]}>
+                <Pressable android_ripple={{ color: '#a9fcf7ff' }} onPressOut={fundDetails.bind(this, funds[0].id)} >
+                    <View style={styles.fundName}>
+                        <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', fontFamily: 'sans-serif-condensed', padding:0 }}>{funds[0].fundName}</Text>
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical:5 }}>{funds[0].EmpName}</Text>
                     </View>
                 </Pressable>
-                <View>
-                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[0].accValue}</Text>
+                <View style={styles.fundName}>
+                    <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[0].accValue}</Text>
                 </View>
-            </View> 
+            </View>
             <View style={styles.fundInfo}>
-                <Pressable android_ripple={{color: '#a9fcf7ff'}} onPress={fundDetails.bind(this, funds[1].id)}>
-                    <View style={{ marginTop: 15, marginRight: '31%' }}>
-                        <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', paddingBottom: 3, fontFamily: 'sans-serif-condensed' }}>{funds[1].fundName}</Text>
-                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>{funds[1].EmpName}</Text>
+                <Pressable android_ripple={{ color: '#a9fcf7ff' }} onPressOut={fundDetails.bind(this, funds[1].id)}>
+                    <View style={styles.fundName}>
+                        <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', fontFamily: 'sans-serif-condensed', padding:0 }}>{funds[1].fundName}</Text>
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical:5 }}>{funds[1].EmpName}</Text>
                     </View>
                 </Pressable>
-                <View>
-                    <Text style={{ marginTop: 20, fontSize: 20, marginRight: 10, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[1].accValue}</Text>
+                <View style={styles.fundName}>
+                    <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>{funds[1].accValue}</Text>
                 </View>
-            </View>               
-            <View style={[styles.todoitem, { backgroundColor: '#f3f3f3' }]}>
+            </View>
+            <View style={styles.todoitem}>
                 <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>TO DO</Text>
             </View>
             <View style={styles.todoInfo}>
@@ -58,14 +58,15 @@ const HomeItem = ({ setScreen, setFund }) => {
             </View>
         </View>
     );
-
 }
+
+export default HomeItem;
 
 const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
         backgroundColor: '#d4d4d4',
-        paddingTop:10
+        paddingTop: 10
     },
     title: {
         height: 60,
@@ -76,55 +77,40 @@ const styles = StyleSheet.create({
         alignItem: 'center',
         justifyContent: 'center',
         padding: 10,
-        elevation: 5
-    },
-    title: {
-        height: 60,
-        backgroundColor: 'white',
-        marginTop: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        alignItem: 'center',
-        justifyContent: 'center',
-        padding: 10,
-        elevation: 5
+        elevation: 10
     },
     fundInfo: {
-        height: 100,
+        minHeight:90,
+        maxHeight: 90,
         flexDirection: 'row',
+        justifyContent:'space-between',
         backgroundColor: 'white',
-        marginTop: 5,
+        marginTop: 2.5,
         marginLeft: 10,
         marginRight: 10,
-        alignItem: 'center',
-        justifyContent: 'center',
-        paddingLeft: 10,
         elevation: 5
     },
+    fundName:{
+        marginHorizontal:10,
+        marginVertical:15,
+    },
     todoitem: {
-        height: 60,
-        backgroundColor: 'white',
+        minHeight: 60,
+        backgroundColor: '#f3f3f3',
         marginTop: 15,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal:10,
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 10,
-        paddingTop: 12,
-        paddingBottom: 12,
         elevation: 5
     },
     todoInfo: {
-        height: 105,
+        minHeight: 90,
         backgroundColor: 'white',
-        marginTop: 1,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 10,
         elevation: 5
     }
-});
-
-export default HomeItem;
+})

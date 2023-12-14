@@ -7,7 +7,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import PrimaryButton from '../components/PrimaryButton';
 import AdmissionDate from './AdmissionDate';
 import DischargeDate from './DischargeDate';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Claims = () => {
   const [claim, setClaim] = useState("");
@@ -159,14 +159,15 @@ const Claims = () => {
             isVisible={popupVisible} >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-              <MaterialCommunityIcons name="checkbox-multiple-marked-circle" size={125} color="#26c248" onPress={hideModal} style={{marginBottom:5, marginTop:15}}/>
+              <Feather name="check-circle" size={75} color="#26c248" onPress={hideModal} style={{marginBottom:20, marginTop:15}}/>
+              {/* <Ionicons name="checkmark-sharp" size={75} color="#26c248" onPress={hideModal} style={{marginBottom:20, marginTop:15}}/> */}
               <Text style={{ 
                 fontSize: 22, 
                 paddingBottom: 10,  
-                fontFamily: 'serif',
+                fontFamily: 'sans-serif',
                 }}> 
-                <Text style={{ color: '#13b213', fontWeight: 'bold' }}>Congrats!</Text> You have Submitted Your Claim Successfully for <Text style={{ color: '#ff7300ff', fontWeight: 'bold' }}>${amount}</Text></Text>
-              <PrimaryButton onPress={hideModal}>Okay</PrimaryButton>             
+                  <Text style={{ color: '#13b213', fontWeight: 'bold', fontSize: 24, fontFamily: 'sans-serif' }}>Congrats!</Text> You have Submitted Your Claim Successfully for <Text style={{ color: '#ff7300ff', fontWeight: 'bold' }}>${amount}</Text></Text>
+              <PrimaryButton onPress={hideModal}>OK</PrimaryButton>             
               </View>
             </View>
           </Modal>

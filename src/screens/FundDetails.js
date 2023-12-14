@@ -1,106 +1,107 @@
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 
 function FundDetails({ setScreen, fund }) {
+
     function back() {
         setScreen(false);
     }
+
     return (
         <View style={styles.outerContainer}>
-            <View style={[styles.fundInfo, { height: 80, backgroundColor: '#0a0072' }]}>
-                {
-                    (fund.id === 1) ?
-                        <View style={{ marginLeft: '-20%', marginTop: '5%' }}>
-                            <Ionicons name="arrow-back-outline" size={36} color="#ffffff" onPress={back} />
-                        </View> :
-                        <View style={{ marginLeft: '-30%', marginTop: '5%' }}>
-                            <Ionicons name="arrow-back-outline" size={36} color="#ffffff" onPress={back} />
-                        </View>
-                }                
-                <View style={{ marginTop: 8, marginLeft: '4%' }}>
-                    <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', paddingBottom: 3, fontFamily: 'sans-serif-condensed' }}>{fund.fundName}</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff' }}>{fund.EmpName}</Text>
+            <View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]}>
+                <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}>
+                    <Ionicons name="arrow-back-outline" size={32} color="#ffffff" onPress={back} />
+                </View>
+                <View style={styles.fundName}>
+                    <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{fund.fundName}</Text>
+                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8 }}>{fund.EmpName}</Text>
                 </View>
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={[styles.title, { marginTop: 5, backgroundColor: '#f3f3f3' }]}>
-                    <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
+                <View style={styles.title}>
+                    <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
-                <View style={[styles.fundInfo, { marginTop: 0 }]}>
-                    <View style={{ marginTop: 15, paddingLeft: '6%' }}>
-                        <Text style={{ fontSize: 16, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: -36 }}>Total Account Value</Text>
-                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', marginLeft: -36 }}>{fund.accValue}</Text>
+                <View style={styles.fundAmount}>
+                    <View>
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>Total Account Value</Text>
+                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{fund.accValue}</Text>
                     </View>
-                    <View style={{ marginTop: 24, marginLeft: '50%' }}>
+                    <View style={{ paddingVertical: 12 }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View>
                 </View>
                 <View style={[styles.title, { marginTop: 10, backgroundColor: '#f3f3f3' }]}>
-                    <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Contributions</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed', paddingVertical: 8 }}>Contributions</Text>
                 </View>
-                <View style={[styles.fundInfo, { marginTop: 0.5, height: 65 }]}>
-                    <View style={{ marginTop: 20, paddingLeft: '6%' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: 10, marginRight: 30 }}>Employee Contributions</Text>
+                <View style={[styles.fundInterest, { minHeight: 60, marginTop: 0 }]}>
+                    <View>
+                        <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', paddingVertical:15 }}>Employee Contributions</Text>
                     </View>
-                    <View style={{ marginTop: 10, marginLeft: 30, marginRight: 50, flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>{fund.empCont}</Text>
-                        <Ionicons style={{ paddingLeft: 15 }} name="ios-information-circle-outline" size={40} color="#00806b" />
-                    </View>
-                </View>
-                <View style={[styles.fundInfo, { marginTop: 4, height: 65 }]}>
-                    <View style={{ marginTop: 20, paddingLeft: '6%' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, fontFamily: 'sans-serif-condensed', marginLeft: 10, marginRight: 6 }}>Employer Contributions</Text>
-                    </View>
-                    <View style={{ marginTop: 10, marginLeft: 30, marginRight: 50, flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 18, paddingBottom: 3, marginTop: 10, fontFamily: 'sans-serif-condensed', paddingLeft: 20 }}>{fund.employerCont}</Text>
-                        <Ionicons style={{ paddingLeft: 15 }} name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', paddingHorizontal:10, paddingVertical:15 }}>{fund.empCont}</Text>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" style={{paddingVertical:5}} />
                     </View>
                 </View>
-                <View style={[styles.todoitem, { backgroundColor: '#f3f3f3', marginTop: 10 }]}>
+                <View style={[styles.fundInterest, {minHeight:60, marginTop: 2.5 }]}>
+                    <View>
+                        <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', paddingVertical:15 }}>Employer Contributions</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', paddingHorizontal:10, paddingVertical:15 }}>{fund.employerCont}</Text>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" style={{paddingVertical:5}} />
+                    </View>
+                </View>
+
+                <View style={styles.todoitem}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>TO DO</Text>
                 </View>
                 <View style={styles.todoInfo}>
                     <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed' }}>You are all set!</Text>
                     <Text style={{ fontSize: 18, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>You have nothing on your to do list.</Text>
                 </View>
-                <View style={[styles.todoitem, { backgroundColor: '#f3f3f3', height: 65, marginTop: 8 }]}>
+                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', height: 65, marginTop: 8 }]}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Account Activity</Text>
                 </View>
-                <View style={[styles.todoitem, { height: 65, marginTop: 0 }]}>
+                <View style={[styles.todoitem, { minHeight: 65, marginTop: 0 }]}>
                     <Text style={{ color: '#34348f', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Transactions</Text>
                 </View>
-                <View style={[styles.todoitem, { backgroundColor: '#f3f3f3', height: 65, marginTop: 8 }]}>
+
+                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 65, marginTop: 8 }]}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Interest Rate Summary</Text>
                 </View>
-                <View style={[styles.todoitem, { height: 75, marginTop: 0, borderBottomColor:'black', borderBottomWidth:1.5 }]}>
-                    <Text style={{ fontSize: 15, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Your Emergency Savings Fund balance determine the interest we apply.</Text>
+                <View style={[styles.todoitem, { minHeight: 75, marginTop: 0, borderBottomColor:'black', borderBottomWidth:1.5 }]}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Your Emergency Savings Fund balance determine the interest we apply.</Text>
                 </View>
-                <View style={[styles.fundInfo, { marginTop:0, height: 75 }]}>
-                    <View style={{ marginTop: 10, paddingLeft: '3%' }}>
-                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '50%' }}>Interest Rate</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.intRate}</Text>
+
+                <View style={[styles.fundInterest, {marginTop:0, maxHeight:80}]}>
+                    <View>
+                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Rate</Text>
+                        <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{fund.intRate}</Text>
                     </View>
-                    <View style={{ marginTop: 18, marginLeft: 30, marginRight: 25, }}>
-                        <Ionicons style={{ paddingLeft: 25 }} name="ios-information-circle-outline" size={40} color="#00806b" />
-                    </View>
-                </View>
-                <View style={[styles.fundInfo, { marginTop: 2.5, height: 75, borderBottomColor:'black', borderBottomWidth:1.5 }]}>
-                    <View style={{ marginTop: 10, paddingLeft: '3%' }}>
-                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '32%' }}>Interest Earned(Year to date)</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.intEarned}</Text>
-                    </View>
-                    <View style={{ marginTop: 18, marginLeft: 0, marginRight: 30, }}>
-                        <Ionicons style={{ paddingLeft: 20 }} name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{ paddingVertical: 8 }}>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View>
                 </View>
-                <View style={[styles.fundInfo, { marginTop: 1, height: 75 }]}>
-                    <View style={{ marginTop: 10, paddingLeft: '10%' }}>
-                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', marginLeft: 1, marginRight: '30%' }}>Annual Percentage Yield(APY)</Text>
-                        <Text style={{ fontSize: 24, marginTop: 5, fontFamily: 'sans-serif-condensed', fontWeight:'700' }}>{fund.apy}</Text>
+
+
+                <View style={[styles.fundInterest, { borderBottomColor: '#969696', borderBottomWidth: 3, marginTop:2.5, maxHeight:80 }]}>
+                    <View>
+                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Earned(Year to date)</Text>
+                        <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{fund.intEarned}</Text>
                     </View>
-                    <View style={{ marginTop: 18, marginLeft: 15, marginRight: 58, }}>
-                        <Ionicons style={{ paddingLeft: 12 }} name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{ paddingVertical: 8 }}>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                    </View>
+                </View>
+
+                <View style={[styles.fundInterest, { marginTop:0, maxHeight:80 }]}>
+                    <View>
+                        <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Annual Percentage Yield(APY)</Text>
+                        <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{fund.apy}</Text>
+                    </View>
+                    <View style={{ paddingVertical: 8 }}>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View>
                 </View>
                 <View>
@@ -117,62 +118,79 @@ const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
         backgroundColor: '#d4d4d4',
-        paddingBottom:10,
-        paddingTop:10
-    },
-    title: {
-        height: 60,
-        backgroundColor: 'white',
-        marginTop: 15,
-        marginLeft: 10,
-        marginRight: 10,
-        alignItem: 'center',
-        justifyContent: 'center',
-        padding: 10,
-        elevation: 5
+        paddingTop: 10
     },
     fundInfo: {
-        height: 100,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'white',
         marginTop: 5,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal: 10,
+        paddingLeft: 10,
+        elevation: 5
+    },
+    fundName: {
+        paddingHorizontal: 10,
+        paddingVertical: 8
+    },
+    title: {
+        minHeight: 60,
+        backgroundColor: '#f3f3f3',
+        marginTop: 5,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
-        paddingLeft: 10,
+        paddingHorizontal: 20,
+        elevation: 5
+    },
+    fundAmount: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        minHeight: 90,
+        marginHorizontal: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 12,
+        elevation: 5
+    },
+    fundInterest: {
+        flex: 1,
+        minHeight: 75,
+        maxHeight: 75,
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        justifyContent: 'space-between',
+        marginTop: 5,
+        marginHorizontal: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         elevation: 5
     },
     todoitem: {
-        height: 60,
-        backgroundColor: 'white',
+        minHeight: 60,
+        backgroundColor: '#f3f3f3',
         marginTop: 15,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal:10,
         alignItem: 'center',
         justifyContent: 'center',
-        paddingLeft: 10,
-        paddingTop: 12,
-        paddingBottom: 12,
+        paddingLeft: 20,
         elevation: 5
     },
     todoInfo: {
-        height: 105,
+        minHeight: 90,
         backgroundColor: 'white',
         marginTop: 1,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
-        paddingLeft: 10,
+        paddingLeft: 20,
         elevation: 5
     },
     conclusion:{
-        paddingTop:25,
-        paddingLeft:16,
-        paddingRight:16,
-        paddingBottom:8,
+        paddingHorizontal:15,
+        paddingVertical:20,
         justifyContent: 'flex-start',
         fontSize:15
     }
-});
+})
