@@ -18,6 +18,7 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import HelpAndSupportScreen from '../screens/settings menu/HelpAndSupportScreen';
+import MyCart from '../screens/MyCart';
 
 
 //Create Native-Stack Navigator like this
@@ -252,6 +253,21 @@ function MyDrawer() {
         }}
         component={MyCardsStack}
       />
+      <Drawer.Screen
+          name="My Cart"
+          options={{
+            drawerLabel: 'My Cart',
+            title: 'My Cart',
+            headerTitleStyle: {
+              color: '#fff',
+              fontWeight: '700',
+              fontSize: 22,
+              marginLeft: -16,
+              fontFamily: 'sans-serif-condensed'
+            },
+          }}
+          component={MyCart}
+      />  
       <Drawer.Screen
         name="Help & Support"
         options={{
