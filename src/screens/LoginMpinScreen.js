@@ -17,8 +17,8 @@ const LoginMpinScreen = ({ navigation }) => {
     };
 
     const staticUserData = {
-        userName: 'staticUser',
-        password: 'staticPassword',
+        userName: 'inspira',
+        password: 'inspira',
         staticMpin: '123456',
     };
 

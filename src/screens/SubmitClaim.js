@@ -14,6 +14,9 @@ const Claims = () => {
   const [amount, setAmount] = useState("");
   const [popupVisible, setpopupVisible] = useState(false);
   const [value, setValue] = useState(null);
+  const [treatment, setTreatment] = useState('');
+  const [addDate, setAddDate] = useState(new Date());
+  const [disDate, setDisDate] = useState(new Date());
 
   const [isFocus, setIsFocus] = useState(false);
   const [isTextFocus, setIsTextFocus] = useState(false);
@@ -33,6 +36,20 @@ const Claims = () => {
   const onSubmitEditing = () => {
     console.log("check")
     Keyboard.dismiss();
+  }
+  const saveForLater = () => {
+    const claimDetails=new Map();
+    claimDetails.set("treatmentName",treatment)
+    claimDetails.set("addDate",addDate.toLocaleDateString())
+    claimDetails.set("disDate",disDate.toLocaleDateString())
+    claimDetails.set("claimDetails",claim)
+    claimDetails.set("amount",amount)
+    // claimDetails.push(treatment)
+    // claimDetails.push(addDate.toLocaleDateString());
+    // claimDetails.push(disDate.toLocaleDateString());
+    // claimDetails.push(claim);
+    // claimDetails.push(amount);
+    console.log(claimDetails)
   }
   const data = [
     { label: 'Cough', value: '1' },
@@ -84,6 +101,7 @@ const Claims = () => {
               onBlur={() => setIsFocus(false)}
               onChange={item => {
                 setValue(item.value);
+                setTreatment(item.label);
                 setIsFocus(false);
               }}
               renderLeftIcon={() => (
@@ -103,7 +121,7 @@ const Claims = () => {
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Admission Date: </Text>
           </View>
-          <AdmissionDate/>
+          <AdmissionDate addDate={setAddDate} />
         </View>
 
         <View style={styles.itemDesign}>
@@ -111,7 +129,7 @@ const Claims = () => {
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Discharge Date: </Text>
           </View>
-          <DischargeDate />
+          <DischargeDate disDate={setDisDate} />
         </View>
 
         <View style={styles.itemDesign}>
@@ -141,8 +159,12 @@ const Claims = () => {
             style={[styles.textInput, (isTextFocus) ? { borderColor: 'orange' } : { borderColor: 'grey' }]}
           />
         </View>
-
-        <View style={styles.buttonsContainer}>
+        <View style={[styles.buttonsContainer, { maxWidth: '50%', alignSelf: 'center' }]}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={saveForLater}>Save For Later</PrimaryButton>
+          </View>
+        </View>
+        <View style={[styles.buttonsContainer, { marginTop: 0 }]}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={clear}>Clear</PrimaryButton>
           </View>
@@ -150,6 +172,7 @@ const Claims = () => {
             <PrimaryButton onPress={submit}>Submit</PrimaryButton>
           </View>
         </View>
+        
 
         <View style={styles.centeredView}>
         

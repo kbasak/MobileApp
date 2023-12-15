@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 //Date Picker
-function AdmissionDate() {
+function AdmissionDate({ addDate }) {
 
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
@@ -13,6 +13,7 @@ function AdmissionDate() {
         const currentDate = selectedDate;
         setShow(false);
         setDate(currentDate);
+        addDate(currentDate);
     };
 
     const showMode = (currentMode) => {
