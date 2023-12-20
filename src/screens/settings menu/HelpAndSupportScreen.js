@@ -44,7 +44,7 @@
 
 
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
  
 function HelpAndSupportScreen() {
@@ -68,12 +68,15 @@ function HelpAndSupportScreen() {
   };
  
   return (
-    <View style={{ backgroundColor: '#DDDDDD' }}>
-      <View style={{ backgroundColor: 'white' }}>
+    <SafeAreaView>
+    <View style={{ backgroundColor: '#DDDDDD', padding:16 }}>
+      
         {list.map((option, index) => (
           <View key={index} style={{
             borderBottomWidth: 3,
-            borderBottomColor: '#DDDDDD', padding: 10
+            borderBottomColor: '#DDDDDD', padding: 10,
+
+            backgroundColor: 'white', 
           }}>
             <TouchableOpacity onPress={() => handleOptionPress(option)}>
               <Text style={styles.text}>{option}</Text>
@@ -81,7 +84,8 @@ function HelpAndSupportScreen() {
           </View>
         ))}
       </View>
-    </View>
+    
+    </SafeAreaView>
   );
 }
  
@@ -89,10 +93,9 @@ export default HelpAndSupportScreen;
  
 const styles = StyleSheet.create({
   text: {
-    margin: 10,
+    marginVertical: 8,
     fontSize: 18,
     color: '#2b2bcd',
-    fontSize: 24,
     fontWeight: 'bold'
   },
 });
