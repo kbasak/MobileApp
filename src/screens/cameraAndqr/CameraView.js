@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { Camera } from 'expo-camera'
 import * as MediaLibrary from "expo-media-library";
@@ -9,6 +9,19 @@ export default function CameraView() {
 
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
+
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      if (status === 'granted') {
+        // start the camera
+        setStartCamera(true)
+      } else {
+        Alert.alert('Access denied')
+      }
+    })();
+  }, []);
 
   const __startCamera = async () => {
     const { status } = await Camera.requestCameraPermissionsAsync();

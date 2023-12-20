@@ -8,7 +8,7 @@ function ProgressBar({ limit, expenditure, cardNumber }) {
     return (
         <View style={styles.container}>
             <Text style={{ paddingBottom: 12, color:'#05001c', fontSize: 22, fontWeight: '700', fontFamily:'sans-serif' }}>
-                Credit Card Report of **<Text style={{color:'#000750'}}>{creditCardNumber}</Text>
+                Credit Card Report of XX<Text style={{color:'#000750'}}>{creditCardNumber}</Text>
             </Text>
             <View style={styles.progressBar}>
                 <Animated.View style={{

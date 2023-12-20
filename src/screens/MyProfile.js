@@ -68,7 +68,10 @@ const Profile = () => {
 
     return (
         <>
-            <KeyboardAvoidingView behavior='position' style={{ flex: 1, padding: 12 }}>
+            <KeyboardAvoidingView
+                behavior="padding"
+                style={{ flex: 1 }}
+                enabled>
                 <View style={styles.itemDesign}>
                     <View style={styles.containerText}>
                         <Text style={styles.textFormat}>Email Id: </Text>

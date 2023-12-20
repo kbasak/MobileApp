@@ -3,16 +3,20 @@ import { StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function BarCodeScan() {
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      const { status } = await BarCodeScanner.requestPermissionsAsync();  
+      if (status === 'granted') {
+        setHasPermission(true);
+      } else {
+        Alert.alert('Access denied')
+      }
     })();
   }, []);
-
+  console.log(hasPermission);
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
@@ -29,9 +33,9 @@ export default function BarCodeScan() {
     );
   };
 
-  if (hasPermission === null) {
-    return <View />;
-  }
+  // if (hasPermission === null) {
+  //   return <View />;
+  // }
 
   if (hasPermission === false) {
     return (
