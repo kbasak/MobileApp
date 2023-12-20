@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View,TouchableOpacity, StyleSheet, Linking } from "react-native";
+import { Text, View,TouchableOpacity, StyleSheet, Linking, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 function HelpScreen() {
@@ -30,7 +30,9 @@ function HelpScreen() {
     };
    
     return (
-      <View style={{ backgroundColor: '#DDDDDD' }}>
+      
+      <SafeAreaView >
+      <View style={{ backgroundColor: '#DDDDDD', padding: 16 }}>
         <View style={{ backgroundColor: 'white' }}>
           {contentList.map((content, index) => (
             <View key={index} style={{
@@ -44,18 +46,20 @@ function HelpScreen() {
           ))}
         </View>
       </View>
+      </SafeAreaView>
     );
   }
    
   const styles = StyleSheet.create({
     text: {
-      margin: 10,
+      marginVertical: 8,
       fontSize: 18,
       color: '#2b2bcd',
-      fontSize: 24,
       fontWeight: 'bold'
     },
   });
+
+  
    
   export default HelpScreen;
   
