@@ -21,7 +21,7 @@ function ProgressBar({ limit, expenditure, cardNumber }) {
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ minWidth: 300, marginLeft: 5 }}>
                     <Text style={{
-                        width: 145, marginLeft: 50,
+                        minWidth: 140, marginLeft: 50,
                         marginTop: 5, fontSize: 15,
                         fontWeight: 'bold',
                         color:'#170080',

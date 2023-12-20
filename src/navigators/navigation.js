@@ -21,6 +21,9 @@ import HelpAndSupportScreen from '../screens/settings menu/HelpAndSupportScreen'
 import MyCart from '../screens/MyCart';
 import HelpScreen from '../screens/settings menu/HelpScreen';
 import HelpAndSupportStack from './HelpAndSupportNavigation';
+import CameraAndScan from '../screens/cameraAndqr/CameraAndScan';
+import CameraAndScanStack from './CameraAndQR';
+
 
 
 //Create Native-Stack Navigator like this
@@ -116,6 +119,15 @@ const MyCardsStack = () => {
     </Stack.Navigator>
   );
 }
+
+// const CameraAndScanStack = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{ headerShown: false }}>
+//       <Stack.Screen name="CameraAndScan" component={CameraAndScan} />
+//     </Stack.Navigator>
+//   );
+// }
 
 function MyTabs() {
   return (
@@ -241,6 +253,21 @@ function MyDrawer() {
           },
         }}
         component={MyProfileStack}
+      />
+       <Drawer.Screen
+        name="Camera & Scan"
+        options={{
+          drawerLabel: 'Photo/QR',
+          title: 'Photo/QR',
+          headerTitleStyle: {
+            color: '#fff',
+            fontWeight: '700',
+            fontSize: 22,
+            marginLeft: -16,
+            fontFamily: 'sans-serif-condensed'
+          },
+        }}
+        component={CameraAndScanStack}
       />
       <Drawer.Screen
         name="My Cards"
