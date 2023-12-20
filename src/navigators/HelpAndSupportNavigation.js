@@ -13,13 +13,33 @@ const HelpAndSupportStack = () => {
       <Stack.Navigator
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="HelpAndSupport" component={HelpAndSupportScreen} />
-        <Stack.Screen name="Help" component={HelpScreen} options={{headerShown: true}}/>
-        <Stack.Screen name="FAQ" component={FAQ} options={{headerShown: true}}/>
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{headerShown: true}}/>
-        <Stack.Screen name="TermsConditions" component={TermsAndConditions} options={{headerShown: true}}/>
+        <Stack.Screen name="Help" component={HelpScreen} 
+          options={{headerShown: true, headerTintColor: 'white',
+          headerStyle:{
+            backgroundColor: '#0a0072',
+          },    
+          }}/>
+        <Stack.Screen name="FAQ" component={FAQ} options={{headerShown: true, headerTintColor: 'white',
+          headerStyle:{
+            backgroundColor: '#0a0072',
+          },    
+          }}/>
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{headerShown: true, headerTintColor: 'white',
+          headerStyle:{
+            backgroundColor: '#0a0072',
+          },    
+          }}/>
+        <Stack.Screen name="TermsConditions" component={TermsAndConditions} options={{headerShown: true, headerTintColor: 'white',
+          headerStyle:{
+            backgroundColor: '#0a0072',
+          },    
+          }}/>
 
       </Stack.Navigator>
     );
   };
 
   export default HelpAndSupportStack;
+
+
+  

@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 const PrivacyPolicy = () => {
     return (
-        <Text>Hello cart</Text>
+        <Text style={{paddingVertical:'70%',fontSize:18, textAlign:'center'}}>PrivacyPolicyScreen work in progress...</Text>
     )
 }
 export default PrivacyPolicy;
