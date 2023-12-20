@@ -13,7 +13,7 @@ function AdmissionDate({ addDate }) {
         const currentDate = selectedDate;
         setShow(false);
         setDate(currentDate);
-        addDate(currentDate);
+        addDate(currentDate.toLocaleDateString());
     };
 
     const showMode = (currentMode) => {
@@ -31,7 +31,7 @@ function AdmissionDate({ addDate }) {
                     style={[styles.textInput]}
                     onFocus={showDatepicker}
                     placeholder="useless placeholder"
-                    value={date.toLocaleDateString()} 
+                    value={date.toLocaleDateString()}
                     />
                 {show && (
                     <DateTimePicker
