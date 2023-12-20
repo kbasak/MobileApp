@@ -19,6 +19,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import HelpAndSupportScreen from '../screens/settings menu/HelpAndSupportScreen';
 import MyCart from '../screens/MyCart';
+import HelpScreen from '../screens/settings menu/HelpScreen';
+import HelpAndSupportStack from './HelpAndSupportNavigation';
 
 
 //Create Native-Stack Navigator like this
@@ -77,14 +79,16 @@ const SettingScreenStack = () => {
   );
 };
 
-const HelpAndSupportStack = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HelpAndSupport" component={HelpAndSupportScreen} />
-    </Stack.Navigator>
-  );
-};
+// const HelpAndSupportStack = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{ headerShown: true }}>
+//       <Stack.Screen name="HelpAndSupport" component={HelpAndSupportScreen} />
+//       <Stack.Screen name="Help" component={HelpScreen} />
+
+//     </Stack.Navigator>
+//   );
+// };
 
 const SubmitClaimStack = () => {
   return (
@@ -196,7 +200,7 @@ function MyDrawer() {
       <Drawer.Screen
         name="SettingScreenStack"
         options={{
-          drawerLabel: 'Setting',
+          drawerLabel: 'Settings',
           title: 'Settings',
           headerTitleStyle: {
             color: '#fff',

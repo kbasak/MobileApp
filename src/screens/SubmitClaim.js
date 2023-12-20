@@ -21,6 +21,9 @@ const Claims = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isTextFocus, setIsTextFocus] = useState(false);
   const [isClaimFocus, setIsClaimFocus] = useState(false);
+  const [AdmissionDateKey, setAdmissionDateKey] = useState(Date.now().toString());
+  const [DischargeDateKey, setDischargeDateKey] = useState(Date.now().toString());
+
   const hideModal = () => {
     setpopupVisible(() => !popupVisible)
     clear();
@@ -29,6 +32,10 @@ const Claims = () => {
     setClaim("");
     setAmount("");
     setValue(null);
+    setAddDate("");
+    setDisDate(null);
+    setAdmissionDateKey(Date.now().toString());
+    setDischargeDateKey(Date.now().toString());
   }
   const submit = () => {
     setpopupVisible(true);
@@ -121,7 +128,7 @@ const Claims = () => {
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Admission Date: </Text>
           </View>
-          <AdmissionDate addDate={setAddDate} />
+          <AdmissionDate key={AdmissionDateKey} addDate={setAddDate} />
         </View>
 
         <View style={styles.itemDesign}>
@@ -129,7 +136,7 @@ const Claims = () => {
           <View style={styles.containerText}>
             <Text style={styles.textFormat}>Discharge Date: </Text>
           </View>
-          <DischargeDate disDate={setDisDate} />
+          <DischargeDate key={DischargeDateKey} disDate={setDisDate} />
         </View>
 
         <View style={styles.itemDesign}>
