@@ -1,14 +1,14 @@
 import { Animated, StyleSheet, Text, View } from "react-native";
 //progress bar component
 function ProgressBar({ limit, expenditure, cardNumber }) {
-    var creditCardNumber=cardNumber.slice(-7);
+    var creditCardNumber=cardNumber.slice(-4);
     var totalOunstandings=expenditure;
     var remainingBalance=limit-expenditure;
     var ounstandingsPercentage=Math.floor((expenditure/limit)*100)+'%';
     return (
         <View style={styles.container}>
             <Text style={{ paddingBottom: 12, color:'#05001c', fontSize: 22, fontWeight: '700', fontFamily:'sans-serif' }}>
-                Credit Card Report of ...<Text style={{color:'#000750'}}>{creditCardNumber}</Text>
+                Credit Card Report of **<Text style={{color:'#000750'}}>{creditCardNumber}</Text>
             </Text>
             <View style={styles.progressBar}>
                 <Animated.View style={{
@@ -21,12 +21,12 @@ function ProgressBar({ limit, expenditure, cardNumber }) {
             <View style={{ flexDirection: 'row' }}>
                 <View style={{ minWidth: 300, marginLeft: 5 }}>
                     <Text style={{
-                        width: 139, marginLeft: 50,
+                        width: 145, marginLeft: 50,
                         marginTop: 5, fontSize: 15,
                         fontWeight: 'bold',
                         color:'#170080',
                     }}>
-                        Total Ounstandings:{totalOunstandings}
+                        Total Outstandings:{totalOunstandings}
                     </Text>
                 </View>
                 <View style={{paddingBottom:5}}>
