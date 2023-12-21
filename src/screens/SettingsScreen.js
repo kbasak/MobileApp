@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     },
     searchInput: {
         paddingLeft: 10,
+        minWidth: '75%'
     },
     firstBlock: {
         marginTop: 0

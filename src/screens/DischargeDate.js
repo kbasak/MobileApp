@@ -39,6 +39,7 @@ function DischargeDate({ disDate }) {
                         mode={mode}
                         is24Hour={true}
                         onChange={onChange}
+                        maximumDate={new Date()}
                     />
                 )}
                 <AntDesign onPress={showDatepicker} name="calendar" size={40} color="#ff4400" style={{paddingLeft:10}} />

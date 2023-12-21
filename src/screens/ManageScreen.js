@@ -114,7 +114,7 @@ const Manage = () => {
             ],
         },
         {
-            heading: 'Inductry Insights',
+            heading: 'Industry Insights',
             description: [
 
                 {
