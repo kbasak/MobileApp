@@ -1,4 +1,9 @@
+import { useEffect } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
+import axios from "axios";
+import * as SecureStore from 'expo-secure-store';
+import Secure_items from "../Constants/Secure_items";
+
 
 function HomeItem({ setScreen, setFund }) {
 
@@ -17,6 +22,7 @@ function HomeItem({ setScreen, setFund }) {
 
     function fundDetails(id) {
         setScreen(true)
+        console.log(Secure_items.token)
         funds.filter(fund => fund.id === id).map(filteredCard => (
             setFund(filteredCard)
         ))
