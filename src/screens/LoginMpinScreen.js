@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, Button,Image , Alert, StyleSheet, ImageBackground } from 'react-native';
+import { View, TextInput, Text, Button, Image, Alert, StyleSheet, ImageBackground } from 'react-native';
 import Modal from "react-native-modal";
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import PrimaryButton from '../components/PrimaryButton';
+import { loginUser, authenticationMember } from '../util/Authentication';
 
 const LoginMpinScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');
@@ -16,10 +17,11 @@ const LoginMpinScreen = ({ navigation }) => {
         setpopupVisible(() => !popupVisible)
     };
 
-    const staticUserData = {
-        userName: 'inspira',
-        password: 'inspira',
-        staticMpin: '123456',
+    const staticpin = '12345';
+    const userData = {
+        UserName: userName,
+        Password: password,
+        Referer: '',
     };
 
     //   const handleLogin = () => {
@@ -38,9 +40,9 @@ const LoginMpinScreen = ({ navigation }) => {
     //     }
     //   };       -------------this above code will allow user to navigate back to login without pressing logout button just by clicking on topleft side backward arrow. ----------------
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (isMpinMode) {
-            if (mpin === staticUserData.staticMpin) {
+            if (mpin === staticpin) {
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'BottomTabStack' }],
@@ -50,97 +52,98 @@ const LoginMpinScreen = ({ navigation }) => {
                 setpopupVisible(true);
             }
         } else {
-            if (userName === staticUserData.userName && password === staticUserData.password) {
+            try {
+                await authenticationMember(userData);
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'BottomTabStack' }],
                 });
-            } else {
+            } catch (error) {
                 setpopupVisible(true);
             }
         }
     }; //------ the above code ensures that a logged in user won't be able to go back to login screen without logging out.
 
     return (
-        <ImageBackground source={require('../images/Login_bg.jpg')} 
+        <ImageBackground source={require('../images/Login_bg.jpg')}
             style={styles.backgroundColor}>
-        <View style={styles.container}>
-            
-            <Image source={require('../images/Login_logo.jpg')} style={styles.logo} />
-            
-            <View style={styles.box}>   
-            <View>
-                <Text style={styles.text}>Welcome to MTC </Text>
-            </View>
-            {isMpinMode ? (
-                <View>
-                    <TextInput
-                        placeholder="Enter 6-digit MPIN"
-                        value={mpin}
-                        onChangeText={setMpin}
-                        keyboardType="numeric"
-                        maxLength={6}
-                        secureTextEntry
-                        style={styles.input}
-                    />
-                    <View style={styles.button}>
-                        <Button color='blue' title="Submit MPIN" onPress={handleLogin} />
+            <View style={styles.container}>
+
+                <Image source={require('../images/Login_logo.jpg')} style={styles.logo} />
+
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.text}>Welcome to MTC </Text>
                     </View>
-                </View>
-            ) : (
-                <View>
-                    <TextInput
-                        placeholder="Username"
-                        value={userName}
-                        onChangeText={setUserName}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                        style={styles.input}
-                    />
-                    <View style={styles.button}>
-                        <Button style={styles.button} color='blue' title="Login" onPress={handleLogin} />
-                    </View>
-                </View>
-            )}
-            <View style={styles.button}>
-                <Button color='#ff6200' title={isMpinMode ? "Switch to Username/Password" : "Switch to MPIN"} onPress={() => setIsMpinMode(!isMpinMode)} />
-            </View>
-            <View style={styles.centeredView}>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    isVisible={popupVisible} >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Entypo name="circle-with-cross" size={105} color="#ff0000" onPress={hideModal} style={{ marginBottom: 30, marginTop: 5 }} />
-                            <Text style={{
-                                fontSize: 22,
-                                paddingBottom: 10,
-                                fontFamily: 'serif',
-                                textAlign:'center'
-                            }}>
-                                {!isMpinMode ? "Invalid UserName or Password" : "OOPSS... Invalid MPIN!!!"}
-                            </Text>
-                            <PrimaryButton onPress={hideModal}>Try Again</PrimaryButton>
+                    {isMpinMode ? (
+                        <View>
+                            <TextInput
+                                placeholder="Enter 6-digit MPIN"
+                                value={mpin}
+                                onChangeText={setMpin}
+                                keyboardType="numeric"
+                                maxLength={6}
+                                secureTextEntry
+                                style={styles.input}
+                            />
+                            <View style={styles.button}>
+                                <Button color='blue' title="Submit MPIN" onPress={handleLogin} />
+                            </View>
                         </View>
+                    ) : (
+                        <View>
+                            <TextInput
+                                placeholder="Username"
+                                value={userName}
+                                onChangeText={setUserName}
+                                style={styles.input}
+                            />
+                            <TextInput
+                                placeholder="Password"
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry
+                                style={styles.input}
+                            />
+                            <View style={styles.button}>
+                                <Button style={styles.button} color='blue' title="Login" onPress={handleLogin} />
+                            </View>
+                        </View>
+                    )}
+                    <View style={styles.button}>
+                        <Button color='#ff6200' title={isMpinMode ? "Switch to Username/Password" : "Switch to MPIN"} onPress={() => setIsMpinMode(!isMpinMode)} />
                     </View>
-                </Modal>
+                    <View style={styles.centeredView}>
+                        <Modal
+                            animationType="slide"
+                            transparent={true}
+                            isVisible={popupVisible} >
+                            <View style={styles.centeredView}>
+                                <View style={styles.modalView}>
+                                    <Entypo name="circle-with-cross" size={105} color="#ff0000" onPress={hideModal} style={{ marginBottom: 30, marginTop: 5 }} />
+                                    <Text style={{
+                                        fontSize: 22,
+                                        paddingBottom: 10,
+                                        fontFamily: 'serif',
+                                        textAlign: 'center'
+                                    }}>
+                                        {!isMpinMode ? "Invalid UserName or Password" : "OOPSS... Invalid MPIN!!!"}
+                                    </Text>
+                                    <PrimaryButton onPress={hideModal}>Try Again</PrimaryButton>
+                                </View>
+                            </View>
+                        </Modal>
+                    </View>
                 </View>
+
             </View>
-            
-        </View>
         </ImageBackground>
     );
 };
 
 const styles = StyleSheet.create({
-    backgroundColor:{
-        flex:1,
+    backgroundColor: {
+        flex: 1,
         resizeMode: 'cover',
         justifyContent: 'center'
     },
@@ -152,28 +155,29 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 100,
-        height:70,
+        height: 70,
         marginBottom: 20,
-        
+
     },
-    box: { width: '80%',
-     maxWidth: 400, 
-     padding: 20, 
-     backgroundColor: '#fff', 
-     borderRadius: 10, 
-     elevation: 2,
-     shadowColor: '#000', 
-     shadowOffset: { width: 0, height: 2 }, 
-     shadowOpacity: 0.2, 
-     shadowRadius: 2, 
-     },
-     text: {
-         color: '#ff6200',
-         fontSize: 30,
-         marginBottom: 5,
-         fontWeight:'500',
-         textAlign:'center'
-     },
+    box: {
+        width: '80%',
+        maxWidth: 400,
+        padding: 20,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        elevation: 2,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+    },
+    text: {
+        color: '#ff6200',
+        fontSize: 30,
+        marginBottom: 5,
+        fontWeight: '500',
+        textAlign: 'center'
+    },
     input: {
         marginBottom: 10,
         padding: 10,
@@ -183,31 +187,31 @@ const styles = StyleSheet.create({
         borderRadius: 28,
         margin: 4,
         overflow: "hidden",
-        margin:10,
+        margin: 10,
     },
     centeredView: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
-      },
-      modalView: {
-        minWidth:'90%',
-        minHeight:'35%',
+    },
+    modalView: {
+        minWidth: '90%',
+        minHeight: '35%',
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: {
-          width: 0,
-          height: 2,
+            width: 0,
+            height: 2,
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 10,
-      },
+    },
 });
 
 export default LoginMpinScreen;
