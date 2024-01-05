@@ -56,6 +56,12 @@
           "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
           "isAccessMediaLocationEnabled": true
         }
+      ],
+      [
+        "react-native-auth0",
+        {
+          "domain": "pfx-uat2.us.auth0.com"
+        }
       ]
     ]
   }
