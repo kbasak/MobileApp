@@ -11,6 +11,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 //Import native-stack navigator like this
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import App1 from './src/screens/OktaLogin';
 
 //Create Native-Stack Navigator like this
 const Stack = createNativeStackNavigator();
@@ -25,9 +26,9 @@ const App = () => {
     <NavigationContainer>
       <StatusBar backgroundColor='#000c5b'/>
     <Stack.Navigator
-      initialRouteName="LoginMpin" style={styles.container}
+      initialRouteName="OktaLogin" style={styles.container}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="LoginMpin" component={LoginMpinScreen} options={{headerShown: false}} />
+      <Stack.Screen name="OktaLogin" component={App1} options={{headerShown: false}} />
       <Stack.Screen name="BottomTabStack" component={MyTabs} options={{headerShown: false}} />
 
     </Stack.Navigator>
