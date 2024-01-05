@@ -3,7 +3,7 @@ import { View, TextInput, Text, Button, Image, Alert, StyleSheet, ImageBackgroun
 import Modal from "react-native-modal";
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import PrimaryButton from '../components/PrimaryButton';
-import { loginUser, authenticationMember } from '../util/Authentication';
+import { authenticationMember } from '../util/Authentication';
 
 const LoginMpinScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');

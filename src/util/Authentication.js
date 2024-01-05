@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Secure_items from '../Constants/Secure_items';
 
 export async function authenticationMember(userData) {
     const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Authentication/Authentication/AuthenticateMember',
@@ -10,6 +11,6 @@ export async function authenticationMember(userData) {
                 'Access-Control-Allow-Credentials': 'true'
             }
         })
-    console.log(response.data);
-    return response.data;
+    //console.log(response.data);
+    Secure_items.token=response.data.AuthenticateMember.TokenID;
 }
