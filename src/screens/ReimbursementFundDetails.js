@@ -1,7 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { View, StyleSheet, Text, ScrollView,ProgressBarAndroid } from "react-native";
+import { View, StyleSheet, Text, ScrollView, Animated } from "react-native";
 import Secure_items from "../Constants/Secure_items";
-//import { ProgressBar } from '@react-native-community/progress-bar-android';
 
 function ReimbursementFundDetails({ setScreen, account }) {
     function back() {
@@ -9,7 +8,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
     }
     return (
         <View style={styles.outerContainer}>
-            {console.log(account)}
+            {/* {console.log(account)} */}
             <View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]}>
                 <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}>
                     <Ionicons name="arrow-back-outline" size={32} color="#ffffff" onPress={back} />
@@ -20,26 +19,79 @@ function ReimbursementFundDetails({ setScreen, account }) {
                 </View>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} >
+                <View style={[styles.title, { flexDirection: 'row' }]}>
+                    <View style={[styles.fundInterest, { marginTop: 2 }]}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', paddingVertical: 14 }}>Plan Year</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 18, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Jan 01, 2024 - Dec 31, 2024</Text>
+                        </View>
+                    </View>
+                </View>
                 <View style={styles.title}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
-                <View style={styles.fundAmount}>
+                <View style={[styles.fundAmount, { height: 210, flexDirection: 'column' }]}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
-                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', flex: 1 }}>Total Account Value</Text>
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingTop: 8, flex: 1 }}>Available Funds</Text>
                         <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', textAlign: 'right', flex: 1 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
                     </View>
                     {/* <View style={{ paddingVertical: 12 }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View> */}
-                    
-                </View>
-                <View style={styles.example}>
-                        <Text>Progress Value</Text>
-                        <ProgressBarAndroid
-                            styleAttr="Horizontal" style={{ borderRadius: 10, transform: [{ scaleX: 1.0 }, { scaleY: 4.5 }], }}
-                            indeterminate={false} color="blue" height='40'
-                            progress={Math.max(0, Math.min(1, (500 - 70) / 500))} />
+                    <View style={[styles.progressBar, { marginBottom: 10 }]}>
+                        <Animated.View style={{
+                            backgroundColor: "#14005f",
+                            width: '25%', borderTopLeftRadius: 5,
+                            borderBottomLeftRadius: 5, borderEndColor: 'black',
+                            borderEndWidth: 2
+                        }} />
                     </View>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={[styles.progressBar, { marginTop: 8, width: 30, height: 30, marginRight:10 }]}>
+                            <Animated.View style={{
+                                backgroundColor: "#14005f",
+                                width: '100%', borderEndColor: 'black'
+                            }} />
+                        </View>
+                        <View style={[styles.fundInterest, { marginTop: 2}]}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Available Funds</Text>
+                                <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, paddingLeft:5, lineHeight: 35 }} />
+
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={[styles.progressBar, { marginTop: 8, width: 30, height: 30, marginRight:10 }]}>
+                            <Animated.View style={{
+                                backgroundColor: "#a2a2a2",
+                                width: '100%', borderEndColor: 'black'
+                            }} />
+                        </View>
+                        <View style={[styles.fundInterest, { marginTop: 2}]}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Funds Spent</Text>
+                                <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 4,paddingLeft:5, lineHeight: 40 }} />
+
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>${Secure_items.accountDetails[0].FundsSpent}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.todoitem}>
+                    <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>To Do</Text>
+                </View>
+                <View style={styles.todoInfo}>
+                    <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>You are all set!</Text>
+                    <Text style={{ fontSize: 18, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>You have nothing on your to do list.</Text>
+                </View>
             </ScrollView>
         </View>
     );
@@ -88,16 +140,8 @@ const styles = StyleSheet.create({
     },
     fundInterest: {
         flex: 1,
-        minHeight: 75,
-        maxHeight: 75,
         flexDirection: 'row',
-        backgroundColor: 'white',
-        justifyContent: 'space-between',
-        marginTop: 5,
-        marginHorizontal: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        elevation: 5
+        justifyContent: 'space-between'
     },
     todoitem: {
         minHeight: 60,
@@ -127,8 +171,17 @@ const styles = StyleSheet.create({
     },
     example: {
         marginVertical: 24,
-        width:'80%',
-        paddingHorizontal:20,
-        
-      },
+        width: '80%',
+        paddingHorizontal: 20,
+
+    },
+    progressBar: {
+        height: 25,
+        flexDirection: 'row',
+        width: '100%',
+        backgroundColor: '#a2a2a2',
+        borderColor: '#000000',
+        borderWidth: 1,
+        borderRadius: 5
+    }
 })

@@ -26,5 +26,5 @@ export async function reimAccountDetails(id, emp_id, employer_id) {
             Secure_items.accountDetails.push(account_info)
         }
 
-        //console.log(Secure_items.accountDetails)
+        console.log(Secure_items.accountDetails)
 }
