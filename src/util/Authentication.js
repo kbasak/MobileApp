@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'react-native';
 import Secure_items from '../Constants/Secure_items';
 
 export async function authenticationMember(userData) {
@@ -12,5 +13,6 @@ export async function authenticationMember(userData) {
             }
         })
     //console.log(response.data);
-    Secure_items.token=response.data.AuthenticateMember.TokenID;
+    Secure_items.token = response.data.AuthenticateMember.TokenID;
+    return response.data.AuthenticateMember.TokenID;
 }

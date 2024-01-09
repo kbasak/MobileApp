@@ -4,6 +4,9 @@ import {useAuth0, Auth0Provider} from 'react-native-auth0';
 //import config from '';
 import { useNavigation } from "@react-navigation/native";
 import config from '../../auth0-configuration';
+import Secure_items from '../Constants/Secure_items';
+import { TextInput } from 'react-native-gesture-handler';
+import { authenticationMember } from '../util/Authentication';
 
 
 const Login = () => {
@@ -15,11 +18,31 @@ const Login = () => {
       await authorize();
       let credentials = await getCredentials();
       const accessToken = credentials.accessToken;
-      console.log(accessToken);
-      navigation.navigate('BottomTabStack');
+      Alert.alert(accessToken);
+      var errorLog='1';
+      if (accessToken !== '') {
+        try {
+          errorLog='2';
+          const userData = {
+            "UserName": "MILLYHSATEST",
+            "Password": "Test@123",
+            "Referer": ""
+          }
+          errorLog='3';
+          let jwtToken = await authenticationMember(userData);
+          errorLog='4';
+          Alert.alert(jwtToken);
+          Alert.alert(Secure_items.token);
+          navigation.navigate('BottomTabStack');
+        } catch (e) {
+          Alert.alert(errorLog+" Authentication Problem ");
+        }
+      } else {
+        Alert.alert("Access Token Problem");
+      }
       //Alert.alert('AccessToken: ' + credentials.accessToken);
     } catch (e) {
-      console.log(e);
+      console.log("Okta Login Issues");
     }
   };
 
@@ -43,6 +66,7 @@ const Login = () => {
       {user && <Text>You are logged in as {user.name}</Text>}
       {!user && <Text>You are not logged in</Text>}
       {error && <Text>{error.message}</Text>}
+      <TextInput value={Secure_items.token} style={{ flex: 1 }} />
       <Button
         onPress={loggedIn ? onLogout : onLogin}
         title={loggedIn ? 'Log Out' : 'Log In'}

@@ -1,5 +1,6 @@
 const Secure_items={
     token:'',
+    jwtFormatToken:'',
     accountType:[],
     reAccountType:[],
     accountDetails:[],
