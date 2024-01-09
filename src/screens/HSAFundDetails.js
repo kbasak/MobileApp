@@ -1,17 +1,25 @@
 import { Ionicons } from "@expo/vector-icons";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
+import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
 
 
-function HSAFundDetails({setScreen, account}){
-    const now=60;
+function HSAFundDetails({ setScreen, account }) {
+    const now = 60;
     function back() {
         setScreen(false);
     }
-    return(
-        <View style={styles.outerContainer}>
+
+    const customTextStyle = {
+        fontFamily: 'sans-serif-condensed',
+        fontWeight: '700',
+        textAlign: 'right'
+    };
+
+    return (
+        <View style={styles.outerContainer} >
             {console.log(account)}
-            <View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]}>
+            < View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]} >
                 <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}>
                     <Ionicons name="arrow-back-outline" size={32} color="#ffffff" onPress={back} />
                 </View>
@@ -19,44 +27,50 @@ function HSAFundDetails({setScreen, account}){
                     <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{Secure_items.accountDetails[0].AccountName}</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8, textTransform: 'uppercase' }}>{Secure_items.accountDetails[0].EmployerName}</Text>
                 </View>
-            </View>
+            </View >
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.title}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
                 <View style={styles.fundAmount}>
-                    <View style={{flexDirection:'row',flex:1}}>
-                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed',flex:1}}>Total Account Value</Text>
-                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', flex:1, textAlign:'right'}}>${Secure_items.accountDetails[0].Balance}</Text>
+                    <View style={{ flexDirection: 'row', flex: 1 }}>
+                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', flex: 1 }}>Total Account Value</Text>
+                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', flex:1, textAlign:'right', lineHeight: 30}}>$</Text>
+                        <MoneyValue
+                            balance={Secure_items.accountDetails[0].Balance}
+                            style={customTextStyle}
+                            baseTextFontSize={25}
+                            superScriptTextFontSize={18}
+                        />
                     </View>
                     {/* <View style={{ paddingVertical: 12 }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View> */}
                 </View>
-              
+
                 <View style={[styles.title, { marginTop: 10, backgroundColor: '#f3f3f3' }]}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', paddingVertical: 8 }}>Contributions</Text>
                 </View>
                 <View style={[styles.fundInterest, { minHeight: 65, marginTop: 0 }]}>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical:10 }}>Employee Contributions </Text>
-                        <Ionicons name="ios-information-circle-outline" size={30}  color="#00806b" style={{paddingVertical:5,lineHeight:40}} />
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employee Contributions </Text>
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 40 }} />
 
                     </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{ fontSize: 25,lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical:10 }}>$0</Text>
-                        <Text style={{ fontSize: 16,lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft:''}}>00</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>$0</Text>
+                        <Text style={{ fontSize: 16, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft: '' }}>00</Text>
                     </View>
                 </View>
-                <View style={[styles.fundInterest, {minHeight:60, marginTop: 2.5 }]}>
-                <View style={{flexDirection:'row'}}>
-                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical:10 }}>Employer Contributions </Text>
-                        <Ionicons name="ios-information-circle-outline" size={30}  color="#00806b" style={{paddingVertical:5,lineHeight:40}} />
+                <View style={[styles.fundInterest, { minHeight: 60, marginTop: 2.5 }]}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employer Contributions </Text>
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 40 }} />
 
                     </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{ fontSize: 25,lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical:10 }}>$0</Text>
-                        <Text style={{ fontSize: 16,lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft:''}}>00</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>$0</Text>
+                        <Text style={{ fontSize: 16, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft: '' }}>00</Text>
                     </View>
                 </View>
 
@@ -77,11 +91,11 @@ function HSAFundDetails({setScreen, account}){
                 <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 60, marginTop: 8 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Interest Rate Summary</Text>
                 </View>
-                <View style={[styles.todoitem, { minHeight: 75, marginTop: 0, borderBottomColor:'black', borderBottomWidth:1.5 }]}>
+                <View style={[styles.todoitem, { minHeight: 75, marginTop: 0, borderBottomColor: 'black', borderBottomWidth: 1.5 }]}>
                     <Text style={{ fontSize: 16, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Your Emergency Savings Fund balance determine the interest we apply.</Text>
                 </View>
 
-                <View style={[styles.fundInterest, {marginTop:0, maxHeight:80}]}>
+                <View style={[styles.fundInterest, { marginTop: 0, maxHeight: 80 }]}>
                     <View>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Rate</Text>
                         <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestRate}</Text>
@@ -92,7 +106,7 @@ function HSAFundDetails({setScreen, account}){
                 </View>
 
 
-                <View style={[styles.fundInterest, { borderBottomColor: '#C0C0C0', borderBottomWidth: 3, marginTop:2.5, maxHeight:80 }]}>
+                <View style={[styles.fundInterest, { borderBottomColor: '#C0C0C0', borderBottomWidth: 3, marginTop: 2.5, maxHeight: 80 }]}>
                     <View>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Earned(Year to date)</Text>
                         <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestYTD}</Text>
@@ -102,7 +116,7 @@ function HSAFundDetails({setScreen, account}){
                     </View>
                 </View>
 
-                <View style={[styles.fundInterest, { marginTop:0, maxHeight:80 }]}>
+                <View style={[styles.fundInterest, { marginTop: 0, maxHeight: 80 }]}>
                     <View>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Annual Percentage Yield(APY)</Text>
                         <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestAPY}</Text>
@@ -115,7 +129,7 @@ function HSAFundDetails({setScreen, account}){
                     <Text style={[styles.conclusionInfo]}>We calculate interest daily based on the interest rate associated with the account balance ranges shown above. The daily interest is stored banking day of the next month. If you close your account mid-month, you won't receive interest for that month.</Text>
                 </View>
             </ScrollView>
-        </View>
+        </View >
     );
 }
 export default HSAFundDetails;
@@ -177,7 +191,7 @@ const styles = StyleSheet.create({
         minHeight: 60,
         backgroundColor: '#f3f3f3',
         marginTop: 15,
-        marginHorizontal:10,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 20,
@@ -197,19 +211,19 @@ const styles = StyleSheet.create({
         minHeight: 60,
         //backgroundColor: '#f3f3f3',
         marginTop: 8,
-        marginHorizontal:10,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 5,
         elevation: 5,
-        backgroundColor:'white',
+        backgroundColor: 'white',
         borderLeftWidth: 6,
         borderLeftColor: 'orange'
     },
-    conclusionInfo:{
-        paddingHorizontal:15,
-        paddingVertical:15,
+    conclusionInfo: {
+        paddingHorizontal: 15,
+        paddingVertical: 15,
         justifyContent: 'flex-start',
-        fontSize:15
+        fontSize: 15
     },
 })
