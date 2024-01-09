@@ -42,7 +42,7 @@ const CustomDrawer = props => {
       <DrawerContentScrollView {...props}>
         <View style={{
           flexDirection: 'row', justifyContent: 'space-between', padding: 20
-          , alignItems: 'center', backgroundColor: '#000455', marginTop:-4
+          , alignItems: 'center', backgroundColor: '#0000CD', marginTop:-4
         }}>
           <View>
             <Text style={{ color: '#fff',fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik</Text>
@@ -53,7 +53,7 @@ const CustomDrawer = props => {
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <TouchableOpacity style={{ height: 60, backgroundColor: '#000455', alignItems: 'center', justifyContent: 'center' }}
+      <TouchableOpacity style={{ height: 60, backgroundColor: '#0000CD', alignItems: 'center', justifyContent: 'center' }}
         onPress={handleLogout} >
         <Text style={{
           color: 'white', fontFamily: 'sans-serif-condensed', fontWeight: '600', fontSize: 18,
