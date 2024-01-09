@@ -47,6 +47,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
             setFund("HSAAccount")
             setAccount(account);
             setScreen(true);
+            console.log(account);
         } catch (error) {
             console.log(error);
         }    
@@ -65,36 +66,39 @@ function HomeItem({ setScreen, setFund, setAccount }) {
             setScreen(true);
         } catch (error) {
             console.log(error);
-        }
+        }//#87CEFA
+        //#89CFF0
     }
 
     return (
         (isLoading) ?
         (<View style={styles.outerContainer}>
             <View style={[styles.title, { backgroundColor: '#f3f3f3' }]}>
-                <Text style={{ fontSize: 19, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Your Accounts</Text>
+                <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Your Accounts</Text>
             </View>
             {Secure_items.hsaHasAccount &&
             <>
                     {Secure_items.accountType[0].map((account) => (
                         <View style={[styles.fundInfo, { marginTop: 2 }]} key={account.AccountType}>
-                            <Pressable key={account.AccountType} android_ripple={{ color: '#a9fcf7ff' }} onPressOut={fundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
+                            <Pressable key={account.AccountType} android_ripple={{ color: '#89CFF0' }} onPressOut={fundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
                                 {/* {console.log(account)} */}
                                 <View style={styles.fundName}>
-                                    <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', fontFamily: 'sans-serif-condensed', padding: 0 }}>
+                                    <Text style={{ fontSize: 19, fontWeight: '700', color: '#1F75FE', fontFamily: 'sans-serif-condensed', padding: 0 }}>
                                         {/* {funds[0].fundName} */}
                                         {account.Description}
                                     </Text>
-                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical: 5 }}>
+                                    <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', paddingVertical: 5, textTransform: 'uppercase' }}>
                                         {/* {funds[0].EmpName} */}
                                         {account.EmployerName}
                                     </Text>
                                 </View>
                             </Pressable>
-                            <View style={styles.fundName}>
-                                <Text style={{ fontSize: 22, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>
-                                    {/* {funds[0].accValue} */}
-                                    ${account.Balance}
+                            <View style={[styles.fundName,{flexDirection: 'row'}]}>
+                                <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 20 }}>
+                                    $
+                                </Text>
+                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
+                                    {account.Balance}
                                 </Text>
                             </View>
                         </View>
@@ -106,30 +110,32 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                         <View style={[styles.fundInfo, { marginTop: 2 }]} key={account.AccountType}>
                             <Pressable key={account.AccountType} android_ripple={{ color: '#a9fcf7ff' }} onPressOut={reimFundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
                                 <View style={styles.fundName}>
-                                    <Text style={{ fontSize: 20, fontWeight: '700', color: '#2020ba', fontFamily: 'sans-serif-condensed', padding: 0 }}>
+                                    <Text style={{ fontSize: 20, fontWeight: '700', color: '#1F75FE', fontFamily: 'sans-serif-condensed', padding: 0 }}>
                                         {/* {funds[0].fundName} */}
                                         {account.Description}
                                     </Text>
-                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical: 5 }}>
+                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical: 5, textTransform: 'uppercase' }}>
                                         {/* {funds[0].EmpName} */}
                                         {account.EmployerName}
                                     </Text>
                                 </View>
                             </Pressable>
-                            <View style={styles.fundName}>
-                                <Text style={{ fontSize: 22, fontFamily: 'sans-serif-condensed', fontWeight: 'bold' }}>
-                                    {/* {funds[0].accValue} */}
-                                    ${account.Balance}
+                            <View style={[styles.fundName,{flexDirection: 'row'}]}>
+                                <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 20 }}>
+                                    $
+                                </Text>
+                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
+                                    {account.Balance}
                                 </Text>
                             </View>
                         </View>
                     ))}
             </>} 
             <View style={styles.todoitem}>
-                <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>TO DO</Text>
+                <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>To Do</Text>
             </View>
             <View style={styles.todoInfo}>
-                <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed' }}>You are all set!</Text>
+                <Text style={{ fontSize: 20, paddingBottom: 10,fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>You are all set!</Text>
                 <Text style={{ fontSize: 18, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>You have nothing on your to do list.</Text>
             </View>
         </View>):
@@ -200,7 +206,11 @@ const styles = StyleSheet.create({
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 10,
-        elevation: 5
+        elevation: 5,
+        borderLeftWidth: 6,
+        borderLeftColor:'yellow',
+
+        
     },
     centeredView: {
         flex: 1,
