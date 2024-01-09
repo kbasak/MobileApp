@@ -1,7 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView,ProgressBarAndroid } from "react-native";
 import Secure_items from "../Constants/Secure_items";
-function ReimbursementFundDetails({setScreen, account}) {
+//import { ProgressBar } from '@react-native-community/progress-bar-android';
+
+function ReimbursementFundDetails({ setScreen, account }) {
     function back() {
         setScreen(false);
     }
@@ -14,22 +16,30 @@ function ReimbursementFundDetails({setScreen, account}) {
                 </View>
                 <View style={styles.fundName}>
                     <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{Secure_items.accountDetails[0].AccountName}</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8 }}>{Secure_items.accountDetails[0].EmployerName}</Text>
+                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8, textTransform: 'uppercase' }}>{Secure_items.accountDetails[0].EmployerName}</Text>
                 </View>
             </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} >
                 <View style={styles.title}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
                 <View style={styles.fundAmount}>
-                    <View>
-                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>Total Account Value</Text>
-                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
+                    <View style={{ flexDirection: 'row', flex: 1 }}>
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', flex: 1 }}>Total Account Value</Text>
+                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', textAlign: 'right', flex: 1 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
                     </View>
-                    <View style={{ paddingVertical: 12 }}>
+                    {/* <View style={{ paddingVertical: 12 }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
-                    </View>
+                    </View> */}
+                    
                 </View>
+                <View style={styles.example}>
+                        <Text>Progress Value</Text>
+                        <ProgressBarAndroid
+                            styleAttr="Horizontal" style={{ borderRadius: 10, transform: [{ scaleX: 1.0 }, { scaleY: 4.5 }], }}
+                            indeterminate={false} color="blue" height='40'
+                            progress={Math.max(0, Math.min(1, (500 - 70) / 500))} />
+                    </View>
             </ScrollView>
         </View>
     );
@@ -93,7 +103,7 @@ const styles = StyleSheet.create({
         minHeight: 60,
         backgroundColor: '#f3f3f3',
         marginTop: 15,
-        marginHorizontal:10,
+        marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
         paddingLeft: 20,
@@ -109,10 +119,16 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         elevation: 5
     },
-    conclusion:{
-        paddingHorizontal:15,
-        paddingVertical:20,
+    conclusion: {
+        paddingHorizontal: 15,
+        paddingVertical: 20,
         justifyContent: 'flex-start',
-        fontSize:15
-    }
+        fontSize: 15
+    },
+    example: {
+        marginVertical: 24,
+        width:'80%',
+        paddingHorizontal:20,
+        
+      },
 })
