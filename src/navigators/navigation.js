@@ -42,11 +42,11 @@ const CustomDrawer = props => {
       <DrawerContentScrollView {...props}>
         <View style={{
           flexDirection: 'row', justifyContent: 'space-between', padding: 20
-          , alignItems: 'center', backgroundColor: '#0000CD', marginTop:-4
+          , alignItems: 'center', backgroundColor: '#0000CD', marginTop: -4
         }}>
           <View>
-            <Text style={{ color: '#fff',fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik</Text>
-            <Text style={{ color: '#fff',fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik@gmail.com</Text>
+            <Text style={{ color: '#fff', fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik</Text>
+            <Text style={{ color: '#fff', fontFamily: 'Roboto', fontWeight: '600', fontSize: 16, }}>Karthik@gmail.com</Text>
           </View>
           <Image source={{ uri: 'https://www.html.am/images/html-codes/links/boracay-white-beach-sunset-300x225.jpg' }}
             style={{ width: 60, height: 60, borderRadius: 30 }} />
@@ -254,7 +254,7 @@ function MyDrawer() {
         }}
         component={MyProfileStack}
       />
-       <Drawer.Screen
+      <Drawer.Screen
         name="Camera & Scan"
         options={{
           drawerLabel: 'Photo/QR',
@@ -285,20 +285,20 @@ function MyDrawer() {
         component={MyCardsStack}
       />
       <Drawer.Screen
-          name="My Cart"
-          options={{
-            drawerLabel: 'My Cart',
-            title: 'My Cart',
-            headerTitleStyle: {
-              color: '#fff',
-              fontWeight: '700',
-              fontSize: 22,
-              marginLeft: -16,
-              fontFamily: 'sans-serif-condensed'
-            },
-          }}
-          component={MyCart}
-      />  
+        name="My Cart"
+        options={{
+          drawerLabel: 'My Cart',
+          title: 'My Cart',
+          headerTitleStyle: {
+            color: '#fff',
+            fontWeight: '700',
+            fontSize: 22,
+            marginLeft: -16,
+            fontFamily: 'sans-serif-condensed'
+          },
+        }}
+        component={MyCart}
+      />
       <Drawer.Screen
         name="Help & Support"
         options={{

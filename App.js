@@ -24,14 +24,13 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor='#000c5b'/>
-    <Stack.Navigator
-      initialRouteName="OktaLogin" style={styles.container}
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen name="OktaLogin" component={LoginMpinScreen} options={{headerShown: false}} />
-      <Stack.Screen name="BottomTabStack" component={MyTabs} options={{headerShown: false}} />
-
-    </Stack.Navigator>
+      <StatusBar backgroundColor='#000c5b' />
+      <Stack.Navigator
+        initialRouteName="OktaLogin" style={styles.container}
+        screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="OktaLogin" component={LoginMpinScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="BottomTabStack" component={MyTabs} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

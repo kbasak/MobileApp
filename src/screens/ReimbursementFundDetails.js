@@ -1,11 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
 import { View, StyleSheet, Text, ScrollView, Animated } from "react-native";
+import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
 
 function ReimbursementFundDetails({ setScreen, account }) {
     function back() {
         setScreen(false);
     }
+    const customTextStyle = {
+        fontFamily: 'sans-serif-condensed',
+        fontWeight: '700',
+        textAlign: 'right'
+    };
+    var fundProgress=((Secure_items.accountDetails[0].FundsAvailable/Secure_items.accountDetails[0].AnnualElection)*100)+'%';
     return (
         <View style={styles.outerContainer}>
             {/* {console.log(account)} */}
@@ -35,7 +42,13 @@ function ReimbursementFundDetails({ setScreen, account }) {
                 <View style={[styles.fundAmount, { height: 210, flexDirection: 'column' }]}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingTop: 8, flex: 1 }}>Available Funds</Text>
-                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', textAlign: 'right', flex: 1 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
+                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', textAlign: 'right', flex: 1 }}>$</Text>
+                        <MoneyValue
+                            balance={Secure_items.accountDetails[0].FundsAvailable}
+                            style={[customTextStyle, { marginTop: 5 }]}
+                            baseTextFontSize={25}
+                            superScriptTextFontSize={18}
+                        />
                     </View>
                     {/* <View style={{ paddingVertical: 12 }}>
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
@@ -43,7 +56,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
                     <View style={[styles.progressBar, { marginBottom: 10 }]}>
                         <Animated.View style={{
                             backgroundColor: "#14005f",
-                            width: '25%', borderTopLeftRadius: 5,
+                            width: fundProgress, borderTopLeftRadius: 5,
                             borderBottomLeftRadius: 5, borderEndColor: 'black',
                             borderEndWidth: 2
                         }} />
@@ -61,8 +74,15 @@ function ReimbursementFundDetails({ setScreen, account }) {
                                 <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, paddingLeft:5, lineHeight: 35 }} />
 
                             </View>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>${Secure_items.accountDetails[0].FundsAvailable}</Text>
+                            <View style={{ flexDirection: 'row', marginTop:5 }}>
+                                <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed',}}>$</Text>
+
+                                <MoneyValue
+                                    balance={Secure_items.accountDetails[0].FundsAvailable}
+                                    style={customTextStyle}
+                                    baseTextFontSize={25}
+                                    superScriptTextFontSize={18}
+                                />
                             </View>
                         </View>
                     </View>
@@ -73,14 +93,21 @@ function ReimbursementFundDetails({ setScreen, account }) {
                                 width: '100%', borderEndColor: 'black'
                             }} />
                         </View>
-                        <View style={[styles.fundInterest, { marginTop: 2}]}>
+                        <View style={[styles.fundInterest, { marginTop: 5}]}>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Funds Spent</Text>
                                 <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 4,paddingLeft:5, lineHeight: 40 }} />
 
                             </View>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ fontSize: 25, lineHeight: 25, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>${Secure_items.accountDetails[0].FundsSpent}</Text>
+                            <View style={{ flexDirection: 'row', marginTop:5 }}>
+                                <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', }}>$</Text>
+
+                                <MoneyValue
+                                    balance={Secure_items.accountDetails[0].FundsSpent}
+                                    style={customTextStyle}
+                                    baseTextFontSize={25}
+                                    superScriptTextFontSize={18}
+                                />
                             </View>
                         </View>
                     </View>
