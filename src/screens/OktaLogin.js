@@ -45,16 +45,16 @@ const Login = ({ logout }) => {
       navigation.navigate('BottomTabStack');  
   };
 
-  // if (isLoading) {
-  //   return <View style={styles.container}><Text>Loading</Text></View>;
-  // }
+  if (isLoading) {
+    return <View style={styles.container}><Text>Loading</Text></View>;
+  }
   
 
   return (
 
-    (!loggedIn) ?
+    (loggedIn) ?
       (
-        (!logout) ?
+        (logout) ?
           (
             <View style={styles.centeredView}>
               <View style={styles.centeredView}>
