@@ -73,7 +73,6 @@ function HSAFundDetails({ setScreen, account }) {
                         <Text style={{ fontSize: 16, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft: '' }}>00</Text>
                     </View>
                 </View>
-
                 <View style={styles.todoitem}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>To Do</Text>
                 </View>
@@ -81,14 +80,14 @@ function HSAFundDetails({ setScreen, account }) {
                     <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>You are all set!</Text>
                     <Text style={{ fontSize: 18, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>You have nothing on your to do list.</Text>
                 </View>
-                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', height: 60, marginTop: 8 }]}>
+                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', height: 60, marginTop: 15 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Account Activity</Text>
                 </View>
                 <View style={[styles.todoInfo, { minHeight: 65, marginTop: 0, }]}>
                     <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Transactions</Text>
                 </View>
 
-                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 60, marginTop: 8 }]}>
+                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 60, marginTop: 15 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Interest Rate Summary</Text>
                 </View>
                 <View style={[styles.todoitem, { minHeight: 75, marginTop: 0, borderBottomColor: 'black', borderBottomWidth: 1.5 }]}>
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     title: {
         minHeight: 60,
         backgroundColor: '#f3f3f3',
-        marginTop: 5,
+        marginTop: 15,
         marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginHorizontal: 10,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 8,
         elevation: 5
     },
     todoitem: {
@@ -210,7 +209,7 @@ const styles = StyleSheet.create({
     conclusionItem: {
         minHeight: 60,
         //backgroundColor: '#f3f3f3',
-        marginTop: 8,
+        marginTop: 15,
         marginHorizontal: 10,
         alignItem: 'center',
         justifyContent: 'center',
@@ -218,7 +217,9 @@ const styles = StyleSheet.create({
         elevation: 5,
         backgroundColor: 'white',
         borderLeftWidth: 6,
-        borderLeftColor: 'orange'
+        borderLeftColor: 'orange',
+        borderBottomColor:'#C0C0C0',
+        borderBottomWidth:8
     },
     conclusionInfo: {
         paddingHorizontal: 15,
