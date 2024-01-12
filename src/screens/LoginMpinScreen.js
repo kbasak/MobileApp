@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, Button, Image, Alert, StyleSheet, ImageBackground } from 'react-native';
 import Modal from "react-native-modal";
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import PrimaryButton from '../components/PrimaryButton';
 import { authenticationMember } from '../util/Authentication';
 
-const LoginMpinScreen = ({ navigation }) => {
+const LoginMpinScreen = ({ navigation, route }) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [mpin, setMpin] = useState('');
@@ -54,10 +54,11 @@ const LoginMpinScreen = ({ navigation }) => {
         } else {
             try {
                 await authenticationMember(userData);
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'BottomTabStack' }],
-                });
+                // navigation.reset({
+                //     index: 0,
+                //     routes: [{ name: 'BottomTabStack' }],
+                // });
+                navigation.navigate('BottomTabStack');
             } catch (error) {
                 setpopupVisible(true);
             }

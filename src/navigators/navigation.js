@@ -35,7 +35,10 @@ const Drawer = createDrawerNavigator();
 const CustomDrawer = props => {
   const navigation = useNavigation();
   const handleLogout = () => {
-    navigation.navigate('OktaLogin');
+    navigation.navigate('OktaLogin',
+      {
+        isLogout: true
+      });
   }
   return (
     <View style={{ flex: 1 }}>
