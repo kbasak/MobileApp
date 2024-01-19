@@ -12,7 +12,7 @@ function HSAFundDetails({ setScreen, account }) {
 
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
-        fontWeight: '700',
+        fontWeight: '600',
         textAlign: 'right'
     };
 
@@ -35,7 +35,7 @@ function HSAFundDetails({ setScreen, account }) {
                 <View style={styles.fundAmount}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', flex: 2 }}>Total Account Value</Text>
-                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '700', flex:1, textAlign:'right', lineHeight: 30}}>$</Text>
+                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '600', flex:1, textAlign:'right', lineHeight: 30}}>$</Text>
                         <MoneyValue
                             balance={Secure_items.accountDetails[0].Balance}
                             style={customTextStyle}

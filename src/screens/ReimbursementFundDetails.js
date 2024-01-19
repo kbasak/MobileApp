@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { View, StyleSheet, Text, ScrollView, Animated } from "react-native";
 import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
@@ -9,20 +9,20 @@ function ReimbursementFundDetails({ setScreen, account }) {
     }
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
-        fontWeight: '700',
+        fontWeight: '600',
         textAlign: 'right'
     };
     var fundProgress=((Secure_items.accountDetails[0].FundsAvailable/Secure_items.accountDetails[0].AnnualElection)*100)+'%';
     return (
         <View style={styles.outerContainer}>
-            {/* {console.log(account)} */}
+            {console.log(account)}
             <View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]}>
                 <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}>
                     <Ionicons name="arrow-back-outline" size={32} color="#ffffff" onPress={back} />
                 </View>
                 <View style={styles.fundName}>
-                    <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{Secure_items.accountDetails[0].AccountName}</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8, textTransform: 'uppercase' }}>{Secure_items.accountDetails[0].EmployerName}</Text>
+                    <Text style={{ fontSize: 24, fontWeight: '600', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{Secure_items.accountDetails[0].AccountName}</Text>
+                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8, textTransform: 'uppercase' }}>{account.EmployerName}</Text>
                 </View>
             </View>
             <ScrollView showsVerticalScrollIndicator={false} >
@@ -36,13 +36,14 @@ function ReimbursementFundDetails({ setScreen, account }) {
                         </View>
                     </View>
                 </View>
+                {/* {Funds} */}
                 <View style={styles.title}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
                 <View style={[styles.fundAmount, { height: 210, flexDirection: 'column' }]}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingTop: 8, flex: 1 }}>Available Funds</Text>
-                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '700', textAlign: 'right', flex: 1 }}>$</Text>
+                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '600', textAlign: 'right', flex: 1 }}>$</Text>
                         <MoneyValue
                             balance={Secure_items.accountDetails[0].FundsAvailable}
                             style={[customTextStyle, { marginTop: 5 }]}
@@ -112,13 +113,52 @@ function ReimbursementFundDetails({ setScreen, account }) {
                         </View>
                     </View>
                 </View>
+                <View style={styles.title}>
+                    <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Important Reminders</Text>
+                </View>
+                <View style={[styles.fundAmount, { minHeight: 60, flexDirection: 'column' }]}>
+
+                    {/* <View style={{ paddingVertical: 12 }}>
+                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                    </View> */}
+                    {Secure_items.accountDetails[0].LastDateToFile &&
+                    <View style={[styles.fundInterest, { marginTop: 0, maxHeight: 80 }]}>
+                        <View style={{paddingVertical:10}}>
+                            <MaterialIcons  name="alarm-on" size={36} color="#ff6600" />
+                        </View>
+                        <View style={{marginLeft:-90}}>
+                            <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: '700', }}>Last day to file claims</Text>
+                            <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', fontWeight: '600', paddingVertical: 8 }}>{new Date(Secure_items.accountDetails[0].LastDateToFile).toLocaleDateString()}</Text>
+                        </View>
+                        <View style={{ paddingVertical: 8 }}>
+                            <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                        </View>
+                    </View>}
+                    {Secure_items.accountDetails[0].LastDateToSpend &&
+                    <View style={[styles.fundInterest, { marginTop: 15, maxHeight: 80, borderTopColor:'black' }]}>
+                        <View style={{paddingVertical:10}}>
+                            <MaterialIcons  name="alarm-on" size={36} color="#ff6600" />
+                        </View>
+                        <View style={{marginLeft:-80}}>
+                            <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: '700', }}>Last day to spend funds</Text>
+                            <Text style={{ fontSize: 18, fontFamily: 'sans-serif-condensed', fontWeight: '600', paddingVertical: 8 }}>{new Date(Secure_items.accountDetails[0].LastDateToSpend).toLocaleDateString()}</Text>
+                        </View>
+                        <View style={{ paddingVertical: 8 }}>
+                            <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                        </View>
+                    </View>}
+                </View>
+                {/* {TODO ITEMS} */}
                 <View style={styles.todoitem}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>To Do</Text>
                 </View>
-                <View style={styles.todoInfo}>
+                <View style={[styles.todoInfo, { marginBottom: 5, elevation: 5, borderBottomColor: '#bcbcbc', borderBottomWidth: 5, borderLeftColor: 'orange', borderLeftWidth: 6 }]}>
                     <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>You are all set!</Text>
                     <Text style={{ fontSize: 18, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>You have nothing on your to do list.</Text>
                 </View>
+                {/* <View style={[styles.conclusionItem, { minHeight: 60, }]}>
+                    <Text style={[styles.conclusionInfo]}>We calculate interest daily based on the interest rate associated with the account balance ranges shown above. The daily interest is stored banking day of the next month. If you close your account mid-month, you won't receive interest for that month.</Text>
+                </View> */}
             </ScrollView>
         </View>
     );
@@ -210,5 +250,26 @@ const styles = StyleSheet.create({
         borderColor: '#000000',
         borderWidth: 1,
         borderRadius: 5
-    }
+    },
+    conclusionItem: {
+        minHeight: 60,
+        //backgroundColor: '#f3f3f3',
+        marginTop: 15,
+        marginHorizontal: 10,
+        alignItem: 'center',
+        justifyContent: 'center',
+        paddingLeft: 5,
+        elevation: 5,
+        backgroundColor: 'white',
+        borderLeftWidth: 6,
+        borderLeftColor: 'orange',
+        borderBottomColor:'#C0C0C0',
+        borderBottomWidth:8
+    },
+    conclusionInfo: {
+        paddingHorizontal: 15,
+        paddingVertical: 15,
+        justifyContent: 'flex-start',
+        fontSize: 15
+    },
 })

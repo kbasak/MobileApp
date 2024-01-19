@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Alert } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import InfoScreen from '../screens/InfoScreen';
 import ManageScreen from '../screens/ManageScreen';
@@ -23,6 +23,7 @@ import HelpScreen from '../screens/settings menu/HelpScreen';
 import HelpAndSupportStack from './HelpAndSupportNavigation';
 import CameraAndScan from '../screens/cameraAndqr/CameraAndScan';
 import CameraAndScanStack from './CameraAndQR';
+import { Logout } from '../screens/Logout';
 
 
 
@@ -33,12 +34,22 @@ const Drawer = createDrawerNavigator();
 
 
 const CustomDrawer = props => {
-  const navigation = useNavigation();
-  const handleLogout = () => {
+  // const handleLogout = async () => {
+  //   const navigation = useNavigation();
+  //   try {
+  //     await Logout();
+  //     navigation.navigate('OktaLogin');
+  //   } catch (e) {
+  //     Alert.alert("Logout Issue")
+  //   }
+  // }
+  const handleLogout = async () => {
+    const navigation = useNavigation();
     navigation.navigate('OktaLogin',
       {
-        isLogout: true
-      });
+        'isLogOut': true
+      }
+    )
   }
   return (
     <View style={{ flex: 1 }}>
