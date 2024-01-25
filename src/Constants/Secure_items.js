@@ -8,6 +8,7 @@ const Secure_items = {
     reimbursementHasAccount: false,
     credentialsOkta: '',
     userProfile: '',
-    subDetails: ''
+    subDetails: '',
+    isToken: false
 }
 export default Secure_items;

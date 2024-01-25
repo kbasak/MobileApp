@@ -24,6 +24,7 @@ import HelpAndSupportStack from './HelpAndSupportNavigation';
 import CameraAndScan from '../screens/cameraAndqr/CameraAndScan';
 import CameraAndScanStack from './CameraAndQR';
 import { Logout } from '../screens/Logout';
+import Secure_items from '../Constants/Secure_items';
 
 
 
@@ -43,13 +44,9 @@ const CustomDrawer = props => {
   //     Alert.alert("Logout Issue")
   //   }
   // }
-  const handleLogout = async () => {
-    const navigation = useNavigation();
-    navigation.navigate('OktaLogin',
-      {
-        'isLogOut': true
-      }
-    )
+  const navigation = useNavigation();
+  const handleLogout = () => {
+    navigation.navigate('OktaLogin');
   }
   return (
     <View style={{ flex: 1 }}>
@@ -152,6 +149,7 @@ function MyTabs() {
       inactiveColor='blue'
       labelStyle={{ fontSize: 12 }}
       style={{ backgroundColor: 'tomato' }}
+      firstRoute="Home"
     >
       <Tab.Screen
         name="Home"

@@ -28,7 +28,7 @@ const App = () => {
       <Stack.Navigator
         initialRouteName="OktaLogin" style={styles.container}
         screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="OktaLogin" component={App1} options={{ headerShown: false }} />
+        <Stack.Screen name="OktaLogin" component={LoginMpinScreen} options={{ headerShown: false }} />
         <Stack.Screen name="BottomTabStack" component={MyTabs} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
