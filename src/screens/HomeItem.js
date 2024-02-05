@@ -26,19 +26,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
         }
         fetchData();
     }, [])
-    const funds = [
-        {
-            id: 1, fundName: 'Emergency Savings Fund', EmpName: 'ESFM_Deepak',
-            accValue: '$981.95', empCont: '$0.00', employerCont: '$1000.00',
-            intRate: '0.05%', intEarned: '$0.08', apy: '0.05%'
-        },
-        {
-            id: 2, fundName: 'Health Savings Fund', EmpName: 'ESFM_Deepak',
-            accValue: '$1265.55', empCont: '$0.00', employerCont: '$1000.00',
-            intRate: '0.05%', intEarned: '$0.08', apy: '0.05%'
-        },
-    ];
-
+    
     const fundDetails = async (id, emp_id, employer_id, account) => {
         //async function fundDetails(id) {
         try {
@@ -64,7 +52,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                 setFund("ESAAccount")
                 setAccount(account);
                 setScreen(true);
-            }      
+            }
         } catch (error) {
             console.log(error);
         }
@@ -93,6 +81,15 @@ function HomeItem({ setScreen, setFund, setAccount }) {
         color: '#000080'
     };
 
+    let totalBalance = 0;
+    HSA = ['Health Savings Account', 'Health Investment Account'];
+
+    Secure_items.accountType[0].forEach(account => {
+        if (HSA.includes(account.Description)) {
+            totalBalance += parseFloat(account.Balance);
+        }
+    })
+
     return (
         (isLoading) ?
             (<View style={styles.outerContainer}>
@@ -101,9 +98,74 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                 </View>
                 {Secure_items.hsaHasAccount &&
                     <>
-                        <Text>HSA Account</Text>
+                        <View style={[styles.fundInfo, { marginTop: 0 }]}>
+
+                            {/* {console.log(account)} */}
+                            <View style={styles.fundName}>
+                                <Text style={{ fontSize: 19, fontWeight: '700', fontFamily: 'sans-serif-condensed', color: 'black', padding: 0 }}>
+                                    {/* {funds[0].fundName} */}
+                                    {/* {account.Description} */}
+                                    Health Savings Account
+                                </Text>
+                                <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed', paddingVertical: 5, textTransform: 'uppercase' }}>
+                                    {/* {funds[0].EmpName} */}
+                                    {/* {account.EmployerName} */}
+                                    {Secure_items.accountType[0][0].EmployerName}
+                                </Text>
+                            </View>
+
+                            <View>
+                                <View style={{ fontFamily: 'sans-serif-condensed', marginHorizontal: 10, marginTop: 15 }}>
+                                    <Text>Total Account Value</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginVertical: 2, justifyContent: 'flex-end', marginHorizontal: 10 }}>
+                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 25}}>
+                                        $
+                                    </Text>
+                                    {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
+        {account.Balance}
+    </Text> */}
+                                    <MoneyValue
+                                        balance={totalBalance}
+                                        style={customTextStyle}
+                                        baseTextFontSize={20}
+                                        superScriptTextFontSize={12}
+                                    />
+                                </View>
+                            </View>
+                        </View>
                         {Secure_items.accountType[0].map((account) => (
-                            <View style={[styles.fundInfo, { marginTop: 2 }]} key={account.AccountType}>
+                            HSA.includes(account.Description) &&
+                            <View style={[styles.fundInfo, { marginTop: 0, backgroundColor: '#f3f3f3', alignItems: 'center' }]} key={account.AccountType}>
+                                <Pressable key={account.AccountType} android_ripple={{ color: '#89CFF0' }} onPressOut={fundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
+                                    {/* {console.log(account)} */}
+                                    <View style={styles.fundName}>
+                                        <Text style={{ fontSize: 19, fontWeight: '700', color: '#1F75FE', fontFamily: 'sans-serif-condensed', padding: 0, marginLeft: 20 }}>
+                                            {/* {funds[0].fundName} */}
+                                            {account.Description === 'Health Savings Account' ? 'Deposite Account' : 'Invenstment Account'}
+                                        </Text>
+                                    </View>
+                                </Pressable>
+                                <View style={[styles.fundName, { flexDirection: 'row' }]}>
+                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 25 }}>
+                                        $
+                                    </Text>
+                                    {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
+                                    {account.Balance}
+                                </Text> */}
+                                    <MoneyValue
+                                        balance={account.Balance}
+                                        style={customTextStyle}
+                                        baseTextFontSize={20}
+                                        superScriptTextFontSize={12}
+                                    />
+                                </View>
+                            </View>
+                        ))}
+
+                        {Secure_items.accountType[0].map((account) => (
+                            !HSA.includes(account.Description) &&
+                            <View style={[styles.fundInfo, { marginTop: 1 }]} key={account.AccountType}>
                                 <Pressable key={account.AccountType} android_ripple={{ color: '#89CFF0' }} onPressOut={fundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
                                     {/* {console.log(account)} */}
                                     <View style={styles.fundName}>
@@ -118,8 +180,8 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                                     </View>
                                 </Pressable>
                                 <View style={[styles.fundName, { flexDirection: 'row' }]}>
-                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
-                                        <Foundation name="dollar" size={24} color="#000080" />
+                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 25 }}>
+                                        $
                                     </Text>
                                     {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
                                     {account.Balance}
@@ -128,7 +190,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                                         balance={account.Balance}
                                         style={customTextStyle}
                                         baseTextFontSize={20}
-                                        superScriptTextFontSize={16}
+                                        superScriptTextFontSize={12}
                                     />
                                 </View>
                             </View>
@@ -151,7 +213,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                                     </View>
                                 </Pressable>
                                 <View style={[styles.fundName, { flexDirection: 'row' }]}>
-                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
+                                    <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
                                         <Foundation name="dollar" size={24} color="#000080" />
                                     </Text>
                                     {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
@@ -211,7 +273,7 @@ const styles = StyleSheet.create({
         elevation: 10
     },
     fundInfo: {
-        minHeight: 90,
+        minHeight: 70,
         maxHeight: 90,
         flexDirection: 'row',
         justifyContent: 'space-between',
