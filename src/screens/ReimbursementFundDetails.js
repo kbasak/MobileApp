@@ -1,4 +1,4 @@
-import { Ionicons, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { Foundation, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { View, StyleSheet, Text, ScrollView, Animated } from "react-native";
 import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
@@ -10,7 +10,8 @@ function ReimbursementFundDetails({ setScreen, account }) {
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
         fontWeight: '600',
-        textAlign: 'right'
+        textAlign: 'right',
+        color: '#191970'
     };
     var fundProgress=((Secure_items.accountDetails[0].FundsAvailable/Secure_items.accountDetails[0].AnnualElection)*100)+'%';
     return (
@@ -43,7 +44,9 @@ function ReimbursementFundDetails({ setScreen, account }) {
                 <View style={[styles.fundAmount, { height: 210, flexDirection: 'column' }]}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingTop: 8, flex: 1 }}>Available Funds</Text>
-                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '600', textAlign: 'right', flex: 1 }}>$</Text>
+                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '600', textAlign: 'right', flex: 1, color: '#000080',lineHeight: 40 }}>
+                            <Foundation name="dollar" size={35} color="#000080" />
+                        </Text>
                         <MoneyValue
                             balance={Secure_items.accountDetails[0].FundsAvailable}
                             style={[customTextStyle, { marginTop: 5 }]}
@@ -71,15 +74,17 @@ function ReimbursementFundDetails({ setScreen, account }) {
                         </View>
                         <View style={[styles.fundInterest, { marginTop: 2}]}>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Available Funds</Text>
+                                <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Remaining Election</Text>
                                 <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, paddingLeft:5, lineHeight: 35 }} />
 
                             </View>
                             <View style={{ flexDirection: 'row', marginTop:5 }}>
-                                <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed',}}>$</Text>
+                            <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', color: '#000080', lineHeight: 32}}>
+                                <Foundation name="dollar" size={35} color="#000080" />
+                                </Text>
 
                                 <MoneyValue
-                                    balance={Secure_items.accountDetails[0].FundsAvailable}
+                                    balance={Secure_items.accountDetails[0].RemainingElection}
                                     style={customTextStyle}
                                     baseTextFontSize={25}
                                     superScriptTextFontSize={18}
@@ -101,7 +106,9 @@ function ReimbursementFundDetails({ setScreen, account }) {
 
                             </View>
                             <View style={{ flexDirection: 'row', marginTop:5 }}>
-                                <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', }}>$</Text>
+                            <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', color: '#000080', lineHeight: 32}}>
+                                <Foundation name="dollar" size={35} color="#000080" />
+                                </Text>
 
                                 <MoneyValue
                                     balance={Secure_items.accountDetails[0].FundsSpent}
@@ -150,7 +157,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
                 </View>
                 {/* {TODO ITEMS} */}
                 <View style={styles.todoitem}>
-                    <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>To Do</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed', color:"#191970" }}>To Do</Text>
                 </View>
                 <View style={[styles.todoInfo, { marginBottom: 5, elevation: 5, borderBottomColor: '#bcbcbc', borderBottomWidth: 5, borderLeftColor: 'orange', borderLeftWidth: 6 }]}>
                     <Text style={{ fontSize: 20, paddingBottom: 10, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>You are all set!</Text>

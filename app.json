@@ -71,6 +71,9 @@
       "eas": {
         "projectId": "cfcbfcaf-f156-4d9e-afa6-a7f6111e6676"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/cfcbfcaf-f156-4d9e-afa6-a7f6111e6676"
     }
   }
 }

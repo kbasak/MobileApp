@@ -5,9 +5,17 @@ const MoneyValue = ({ balance, style, baseTextFontSize, superScriptTextFontSize 
     const isValidBalance = typeof balance === 'number' && !isNaN(balance);
     const [baseText, decimal] = isValidBalance ? balance.toFixed(2).split('.') : ['00', '00'];
 
+    function numberWithCommas(x) {
+        x = x.toString();
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+            x = x.replace(pattern, "$1,$2");
+        return x;
+    }
+
     return (
         <View style={styles.container}>
-            <Text style={[styles.baseText, { fontSize: baseTextFontSize }, style]}>{baseText}</Text>
+            <Text style={[styles.baseText, { fontSize: baseTextFontSize }, style]}>{numberWithCommas(baseText)}</Text>
             {decimal && (
                 <Text style={[styles.superscript, { fontSize: superScriptTextFontSize }, style]}>
                     {decimal}

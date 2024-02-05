@@ -1,9 +1,11 @@
-import { Entypo, Feather } from "@expo/vector-icons";
+import { Entypo, Feather, Foundation } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
 import { latestAccountDetails } from "../util/Accounts";
+import { esaAccountDetails } from "../util/ESAAccount";
+import { hiaAccountDetails } from "../util/HIAAccount";
 import { hsaAccountDetails } from "../util/HSAAccount";
 import { reimAccountDetails } from "../util/ReAccounts";
 
@@ -44,11 +46,25 @@ function HomeItem({ setScreen, setFund, setAccount }) {
             // funds.filter(fund => fund.id === id).map(filteredCard => (
             //     setFund(filteredCard)
             // ))
-            await hsaAccountDetails(id, emp_id, employer_id);
-            setFund("HSAAccount")
-            setAccount(account);
-            setScreen(true);
-            console.log(account);
+            if (account.AccountType === "HSA") {
+                console.log(account.AccountType)
+                await hsaAccountDetails(id, emp_id, employer_id);
+                setFund("HSAAccount")
+                setAccount(account);
+                setScreen(true);
+            } else if (account.AccountType === "HIA") {
+                console.log(account.AccountType)
+                await hiaAccountDetails(id, emp_id, employer_id);
+                setFund("HIAAccount")
+                setAccount(account);
+                setScreen(true);
+            } else if (account.AccountType === "ESA") {
+                console.log(account.AccountType)
+                await esaAccountDetails(id, emp_id, employer_id);
+                setFund("ESAAccount")
+                setAccount(account);
+                setScreen(true);
+            }      
         } catch (error) {
             console.log(error);
         }
@@ -74,6 +90,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
         fontWeight: 'bold',
+        color: '#000080'
     };
 
     return (
@@ -84,6 +101,7 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                 </View>
                 {Secure_items.hsaHasAccount &&
                     <>
+                        <Text>HSA Account</Text>
                         {Secure_items.accountType[0].map((account) => (
                             <View style={[styles.fundInfo, { marginTop: 2 }]} key={account.AccountType}>
                                 <Pressable key={account.AccountType} android_ripple={{ color: '#89CFF0' }} onPressOut={fundDetails.bind(this, account.ID, account.EmployeeId, account.EmployerId, account)} >
@@ -100,8 +118,8 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                                     </View>
                                 </Pressable>
                                 <View style={[styles.fundName, { flexDirection: 'row' }]}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
-                                        $
+                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
+                                        <Foundation name="dollar" size={24} color="#000080" />
                                     </Text>
                                     {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
                                     {account.Balance}
@@ -133,8 +151,8 @@ function HomeItem({ setScreen, setFund, setAccount }) {
                                     </View>
                                 </Pressable>
                                 <View style={[styles.fundName, { flexDirection: 'row' }]}>
-                                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
-                                        $
+                                <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold', lineHeight: 20 }}>
+                                        <Foundation name="dollar" size={24} color="#000080" />
                                     </Text>
                                     {/* <Text style={{ fontSize: 20, fontFamily: 'sans-serif-condensed', fontWeight: 'bold',lineHeight: 30 }}>
                                     {account.Balance}

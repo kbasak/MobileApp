@@ -4,7 +4,7 @@ import MoneyValue from "../components/MoneyValue";
 import Secure_items from "../Constants/Secure_items";
 
 
-function HSAFundDetails({ setScreen, account }) {
+function ESAFundDetails({ setScreen, account }) {
     const now = 60;
     function back() {
         setScreen(false);
@@ -13,7 +13,8 @@ function HSAFundDetails({ setScreen, account }) {
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
         fontWeight: '600',
-        textAlign: 'right'
+        textAlign: 'right',
+        color: '#000080'
     };
 
     return (
@@ -25,7 +26,6 @@ function HSAFundDetails({ setScreen, account }) {
                 </View>
                 <View style={styles.fundName}>
                     <Text style={{ fontSize: 24, fontWeight: '700', color: '#ffffff', fontFamily: 'sans-serif-condensed' }}>{Secure_items.accountDetails[0].AccountName}</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', color: '#fff', paddingVertical: 8, textTransform: 'uppercase' }}>{Secure_items.accountDetails[0].EmployerName}</Text>
                 </View>
             </View >
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -33,14 +33,14 @@ function HSAFundDetails({ setScreen, account }) {
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
                 <View style={styles.fundAmount}>
-                    <View style={{ flexDirection: 'row', flex: 1, paddingVertical:10 }}>
+                    <View style={{ flexDirection: 'row', flex: 1, paddingVertical: 10 }}>
                         <Text style={{ fontSize: 19, fontFamily: 'sans-serif-condensed', flex: 2 }}>Total Account Value</Text>
                         <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
                             <Foundation name="dollar" size={33} color="#000000" />
                         </Text>
                         <MoneyValue
-                            balance={Secure_items.accountDetails[0].Balance}
-                            style={customTextStyle}
+                            balance={account.Balance}
+                            style={[customTextStyle, { color: 'black' }]}
                             baseTextFontSize={25}
                             superScriptTextFontSize={18}
                         />
@@ -49,7 +49,6 @@ function HSAFundDetails({ setScreen, account }) {
                         <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
                     </View> */}
                 </View>
-
                 <View style={[styles.title, { marginTop: 10, backgroundColor: '#f3f3f3' }]}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', paddingVertical: 8 }}>Contributions</Text>
                 </View>
@@ -61,8 +60,12 @@ function HSAFundDetails({ setScreen, account }) {
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                     <Foundation name="dollar" size={34} color="#000080" style={{lineHeight:37}} />
-                        <Text style={{ fontSize: 25, lineHeight: 24, fontFamily: 'sans-serif-condensed', paddingVertical: 10,color: '#000080' }}>0</Text>
-                        <Text style={{ fontSize: 16, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft: '',color: '#000080' }}>00</Text>
+                    <MoneyValue
+                            balance={Secure_items.accountDetails[0].EmployeeContributions}
+                            style={[customTextStyle, { marginTop: 5 }]}
+                            baseTextFontSize={25}
+                            superScriptTextFontSize={18}
+                        />
                     </View>
                 </View>
                 <View style={[styles.fundInterest, { minHeight: 60, marginTop: 2.5 }]}>
@@ -73,8 +76,12 @@ function HSAFundDetails({ setScreen, account }) {
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                     <Foundation name="dollar" size={34} color="#000080" style={{lineHeight:37}} />
-                        <Text style={{ fontSize: 25, lineHeight: 24, fontFamily: 'sans-serif-condensed', paddingVertical: 10,color: '#000080' }}>0</Text>
-                        <Text style={{ fontSize: 16, lineHeight: 30, fontFamily: 'sans-serif-condensed', paddingLeft: '',color: '#000080' }}>00</Text>
+                    <MoneyValue
+                            balance={Secure_items.accountDetails[0].EmployerContributions}
+                            style={[customTextStyle, { marginTop: 5 }]}
+                            baseTextFontSize={25}
+                            superScriptTextFontSize={18}
+                        />
                     </View>
                 </View>
                 <View style={styles.todoitem}>
@@ -90,7 +97,6 @@ function HSAFundDetails({ setScreen, account }) {
                 <View style={[styles.todoInfo, { minHeight: 65, marginTop: 0, }]}>
                     <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Transactions</Text>
                 </View>
-
                 <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 60, marginTop: 15 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Interest Rate Summary</Text>
                 </View>
@@ -135,7 +141,7 @@ function HSAFundDetails({ setScreen, account }) {
         </View >
     );
 }
-export default HSAFundDetails;
+export default ESAFundDetails;
 
 const styles = StyleSheet.create({
     outerContainer: {

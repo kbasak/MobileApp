@@ -58,7 +58,9 @@ const LoginMpinScreen = ({ navigation, route }) => {
                 //     index: 0,
                 //     routes: [{ name: 'BottomTabStack' }],
                 // });
-                navigation.navigate('BottomTabStack');
+                navigation.navigate('BottomTabStack',{
+                    'login':'Hello 1001'
+                  });
             } catch (error) {
                 setpopupVisible(true);
             }

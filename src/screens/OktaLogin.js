@@ -14,10 +14,10 @@ const Login = () => {
 
   const onLogin = async () => {
     try {
-      setLoading(true);
       await authorize();
       let credentials = await getCredentials();
       const accessToken = credentials.accessToken;
+      setLoading(true);
       try {
         if (user) Secure_items.credentialsOkta = user.pfx_username;
       } catch (e) {
@@ -32,8 +32,9 @@ const Login = () => {
 
   const onLogout = async () => {
     try {
-      setLoading(false);
       await clearSession();
+      setLoading(false);
+      Secure_items.token=''
     } catch (e) {
       console.log('Log out cancelled');
     }
@@ -74,31 +75,32 @@ const Login = () => {
           :
           (
             <>
+              <Text>Hello123...{Secure_items.token}</Text>
               {user && <Text>{Secure_items.credentialsOkta = user.pfx_username}</Text>}
               {user && <Text>{Secure_items.token = user["https://pfxmobile.access.token"]}</Text>}
-              {user && navigation.navigate('BottomTabStack')}
+              {user && <Text>{navigation.navigate('BottomTabStack')}</Text>}
             </>
           )
       )
       :
       (
-        // (loading) ?
-        //   (
-        //     <View style={styles.centeredView}>
-        //       <View style={[styles.modalView]}>
-        //         <Feather name="loader" size={50} color="#000000" style={{ marginBottom: 16, marginTop: 25 }} />
-        //         <Text style={{
-        //           fontSize: 20,
-        //           paddingBottom: 0,
-        //           fontFamily: 'sans-serif-medium',
-        //           textAlign: 'center'
-        //         }}>
-        //           Loading ...
-        //         </Text>
-        //       </View>
-        //     </View>
-        //   )
-        //   :
+        (loading) ?
+          (
+            <View style={styles.centeredView}>
+              <View style={[styles.modalView]}>
+                <Feather name="loader" size={50} color="#000000" style={{ marginBottom: 16, marginTop: 25 }} />
+                <Text style={{
+                  fontSize: 20,
+                  paddingBottom: 0,
+                  fontFamily: 'sans-serif-medium',
+                  textAlign: 'center'
+                }}>
+                  Loading ...
+                </Text>
+              </View>
+            </View>
+          )
+          :
           (
             <View style={[styles.centeredView, { marginTop: 0 }]}>
               <View style={styles.centeredView}>
