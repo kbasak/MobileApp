@@ -13,7 +13,8 @@ function HSAFundDetails({ setScreen, account }) {
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
         fontWeight: '600',
-        textAlign: 'right'
+        textAlign: 'right',
+        color:'#000080'
     };
 
     return (
@@ -32,22 +33,30 @@ function HSAFundDetails({ setScreen, account }) {
                 <View style={styles.title}>
                     <Text style={{ fontSize: 20, fontWeight: '500', fontFamily: 'sans-serif-condensed', }}>Funds</Text>
                 </View>
-                <View style={styles.fundAmount}>
-                    <View style={{ flexDirection: 'row', flex: 1, paddingVertical:10 }}>
-                        <Text style={{ fontSize: 19, fontFamily: 'sans-serif-condensed', flex: 2 }}>Total Account Value</Text>
-                        <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
-                            <Foundation name="dollar" size={33} color="#000000" />
-                        </Text>
-                        <MoneyValue
-                            balance={Secure_items.accountDetails[0].Balance}
-                            style={customTextStyle}
-                            baseTextFontSize={25}
-                            superScriptTextFontSize={18}
-                        />
+                <View style={[styles.fundAmount, { minHeight: 90 }]}>
+                    <View>
+                        <View style={{ paddingBottom: 5, paddingTop: 5 }}>
+                            <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed' }}>Available Now</Text>
+                        </View>
+                        <View style={{ flex: 1, flexDirection:'row' }}>
+                            <View>
+                                <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
+                                    <Foundation name="dollar" size={33} color="#000080" />
+                                </Text>
+                            </View>
+                            <View>
+                                <MoneyValue
+                                    balance={account.Balance}
+                                    style={[customTextStyle]}
+                                    baseTextFontSize={25}
+                                    superScriptTextFontSize={18}
+                                />
+                            </View>
+                        </View>
                     </View>
-                    {/* <View style={{ paddingVertical: 12 }}>
-                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
-                    </View> */}
+                    <View style={{ paddingVertical: 16 }}>
+                        <Ionicons name="ios-information-circle-outline" size={32} color="#00806b" />
+                    </View>
                 </View>
 
                 <View style={[styles.title, { marginTop: 10, backgroundColor: '#f3f3f3' }]}>
@@ -175,7 +184,7 @@ const styles = StyleSheet.create({
         maxHeight: 75,
         marginHorizontal: 10,
         paddingHorizontal: 20,
-        paddingVertical: 12,
+        paddingTop:10,
         elevation: 5
     },
     fundInterest: {
