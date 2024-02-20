@@ -9,6 +9,7 @@ const Secure_items = {
     credentialsOkta: '',
     userProfile: '',
     subDetails: '',
-    isToken: false
+    isToken: false,
+    hiaInvestmentInfo: []
 }
 export default Secure_items;

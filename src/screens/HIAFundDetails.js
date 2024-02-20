@@ -1,5 +1,5 @@
 import { Feather, Foundation, Ionicons } from "@expo/vector-icons";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView, Touchable, TouchableOpacity, FlatList } from "react-native";
 import MoneyValue from "../components/MoneyValue";
 import PieChartComponent from "../components/PieChartComponent";
 import Secure_items from "../Constants/Secure_items";
@@ -7,6 +7,43 @@ import MyCart from "./MyCart";
 
 
 function HIAFundDetails({ setScreen, account }) {
+    
+    const generateColor = () => {
+        const randomColor = Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, '0');
+        return `#${randomColor}`;
+    };
+
+    let totalAmount = 0;
+    if (Secure_items.hiaInvestmentInfo[0]) {
+        Secure_items.hiaInvestmentInfo[0].map(myFund => {
+            console.log(myFund.Balance)
+            totalAmount += myFund.Balance;
+        })
+        console.log(totalAmount.toFixed(2))
+    }
+
+    let fundDeatils = []
+    if (Secure_items.hiaInvestmentInfo[0]) {
+        Secure_items.hiaInvestmentInfo[0].map(myFund => {
+            let balance = ((myFund.Balance / totalAmount) * 100).toFixed(2)
+            let ticker = myFund.Ticker;
+            let color = generateColor();
+            fundDeatils.push({ ticker, color, balance })
+        })
+        console.log(fundDeatils)
+    }
+
+    fundColor = []
+    if (fundDeatils) {
+        fundDeatils.map(myFund => {
+            let color = myFund.color;
+            fundColor.push(color)
+        })
+        console.log(fundColor)
+    }
+
     const now = 60;
     function back() {
         setScreen(false);
@@ -14,14 +51,14 @@ function HIAFundDetails({ setScreen, account }) {
 
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
-        fontWeight: '600',
+        fontWeight: 'bold',
         textAlign: 'right',
-        color:'#000080'
+        color: '#000080'
     };
 
     return (
         <View style={styles.outerContainer} >
-            {console.log(account)}
+            {/* {console.log(account)} */}
             < View style={[styles.fundInfo, { minHeight: 80, maxHeight: 80, backgroundColor: '#0a0072' }]} >
                 <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}>
                     <Ionicons name="arrow-back-outline" size={32} color="#ffffff" onPress={back} />
@@ -37,11 +74,9 @@ function HIAFundDetails({ setScreen, account }) {
                 </View>
                 <View style={[styles.fundAmount, { minHeight: 90 }]}>
                     <View>
-                        <View style={{ flex: 1, flexDirection: 'row', paddingTop:10 }}>
+                        <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 }}>
                             <View>
-                                <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
-                                    <Foundation name="dollar" size={33} color="#000080" />
-                                </Text>
+                                <Foundation name="dollar" size={22} color="#000080" style={{ lineHeight: 21 }} />
                             </View>
                             <View>
                                 <MoneyValue
@@ -60,13 +95,11 @@ function HIAFundDetails({ setScreen, account }) {
                         <Ionicons name="ios-information-circle-outline" size={32} color="#00806b" />
                     </View>
                 </View>
-                <View style={[styles.fundAmount, { minHeight: 90, marginTop:3 }]}>
+                <View style={[styles.fundAmount, { minHeight: 90, marginTop: 3 }]}>
                     <View>
-                        <View style={{ flex: 1, flexDirection: 'row', paddingTop:10 }}>
+                        <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 }}>
                             <View>
-                                <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
-                                    <Foundation name="dollar" size={33} color="#000080" />
-                                </Text>
+                                <Foundation name="dollar" size={22} color="#000080" style={{ lineHeight: 21 }} />
                             </View>
                             <View>
                                 <MoneyValue
@@ -85,34 +118,71 @@ function HIAFundDetails({ setScreen, account }) {
                         <Ionicons name="ios-information-circle-outline" size={32} color="#00806b" />
                     </View>
                 </View>
-                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', height: 60, marginTop: 15 }]}>
+                <View style={[styles.todoitem, { backgroundColor: '#ebebeb', minHeight: 80, marginTop: 15, paddingBottom:20 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Investment Snapshot</Text>
                 </View>
-                <View style={[styles.todoitem, { flexDirection: 'row', minHeight: 120, paddingVertical: 25, marginTop: 0 }]}>
-                    <View>
-                        <PieChartComponent/>
+
+                {Secure_items.accountDetails[0].InvestedBalance !== 0 && <View style={[styles.todoitem, { flexDirection: 'row', minHeight: 120, paddingVertical: 25, marginTop: 0, justifyContent: 'space-between', paddingHorizontal: 20 }]}>
+                    <View style={{ marginTop: 12 }}>
+                        <PieChartComponent details={fundDeatils} />
                     </View>
-                </View>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingTop: 15}}>
+                        {fundDeatils.map(fund => (
+                            <View key={fund.ticker}>
+                                {fund.balance !== '0.00' && <View key={fund.ticker} style={{
+                                    marginLeft: 10, minWidth: 125, maxWidth
+                                        : 125
+                                }}>
+                                    {console.log(fund.balance)}
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Text style={{ fontSize: 24, color: fund.color, lineHeight:24 }}>
+                                            {`\u25CF`}
+                                        </Text>
+                                        <Text style={{ paddingBottom: 2 }}>
+                                            {fund.ticker} ({fund.balance}%)
+                                        </Text>
+                                    </View>
+                                </View>}
+                            </View>
+                        ))}
+                    </View>
+                </View>}
+
+
+                {!Secure_items.accountDetails[0].InvestedBalance && <View style={[styles.todoitem, { maxHeight: 25, marginTop: -20 }]}>
+                    <Text style={{ color: '#ff0000aa', fontSize: 20, fontStyle: "italic", fontWeight: '600' }}>No Investment Found</Text>
+                </View>}
+
                 <View style={styles.todoInfo}>
-                    <Text style={{ fontSize: 20, paddingBottom: 2, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>View Investment Portfolio</Text>
+                    <TouchableOpacity>
+                        <Text style={{ fontSize: 20, paddingBottom: 2, fontWeight: 'bold', fontFamily: 'sans-serif-condensed', color: '#1F75FE' }}>View Investment Portfolio</Text>
+                    </TouchableOpacity>
                     <Text style={{ fontSize: 16, paddingTop: 5, fontFamily: 'sans-serif-condensed' }}>Get more detais about your current investment</Text>
                 </View>
                 <View style={[styles.todoitem, { backgroundColor: '#ebebeb', height: 60, marginTop: 15 }]}>
                     <Text style={{ fontSize: 18, fontWeight: '500', fontFamily: 'sans-serif-condensed' }}>Account Actions</Text>
                 </View>
                 <View style={[styles.todoInfo, { minHeight: 65, marginTop: 0, }]}>
-                    <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Buy mutual funds</Text>
+                    <TouchableOpacity>
+                        <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Buy mutual funds</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={[styles.todoInfo, { minHeight: 65, marginTop: 2, }]}>
-                    <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Sell mutual funds</Text>
+                    <TouchableOpacity>
+                        <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>Sell mutual funds</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={[styles.fundInterest, { borderBottomColor: '#C0C0C0', borderBottomWidth: 3, marginTop: 2.5, minHeight: 65 }]}>
-                    <View style={{marginTop:8}}>
-                        <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>View investment options</Text>
-                    </View>
-                    <View style={{ paddingVertical: 12 }}>
-                        <Feather name="external-link" size={20} color="#1F75FE" />
-                    </View>
+                <View style={[styles.fundInterest, { borderBottomColor: '#C0C0C0', borderBottomWidth: 3, marginTop: 2.5, minHeight: 65, marginBottom: '10%' }]}>
+                    <TouchableOpacity>
+                        <View style={{ marginTop: 8 }}>
+                            <Text style={{ color: '#1F75FE', fontSize: 20, fontWeight: '600', fontFamily: 'sans-serif-condensed' }}>View investment options</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={{ paddingVertical: 12 }}>
+                            <Feather name="external-link" size={20} color="#1F75FE" />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </View >
@@ -206,8 +276,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderLeftWidth: 6,
         borderLeftColor: 'orange',
-        borderBottomColor:'#C0C0C0',
-        borderBottomWidth:8
+        borderBottomColor: '#C0C0C0',
+        borderBottomWidth: 8
     },
     conclusionInfo: {
         paddingHorizontal: 15,

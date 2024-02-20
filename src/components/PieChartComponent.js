@@ -2,10 +2,15 @@ import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import PieChart from 'react-native-pie-chart';
 
-const PieChartComponent = () => {
-    const widthAndHeight = 75
-    const series = [20, 20, 20, 20, 20]
-    const sliceColor = ['#1f73db', '#792b0e', '#ff6600', '#e5a800', '#36c00f']
+const PieChartComponent = ({ details }) => {
+    const widthAndHeight = 80
+  const series = []
+  const sliceColor = []
+  details.map(details=>{
+    series.push(details.balance)
+    sliceColor.push(details.color)
+  })
+    
 
     return (
       <ScrollView style={{ flex: 1 }}>

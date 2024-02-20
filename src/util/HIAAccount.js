@@ -11,20 +11,53 @@ export async function hiaAccountDetails(id, emp_id, employer_id) {
         {
             headers: {
                 "PartnerId": "458bf15f-d45d-4385-b3ea-9903c76cf411",
-                "Authorization": 'Bearer '+Secure_items.token,
+                "Authorization": 'Bearer ' + Secure_items.token,
                 'Access-Control-Allow-Origin': "*",
                 'Access-Control-Allow-Credentials': 'true'
             }
         })
 
-        var account_info = response.data.AccountDetails
+    var account_info = response.data.AccountDetails
 
-        if (response.data.AccountDetails) {
-            while (Secure_items.accountDetails.length > 0) {
-                Secure_items.accountDetails.pop();
-            }
-            Secure_items.accountDetails.push(account_info)
+    if (response.data.AccountDetails) {
+        while (Secure_items.accountDetails.length > 0) {
+            Secure_items.accountDetails.pop();
         }
+        Secure_items.accountDetails.push(account_info)
+    }
 
-        //console.log(Secure_items.accountDetails)
+    // const fundInfo = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/MyInvestments',
+    const fundInfo = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/HIA/Funds',
+        {
+            "AccountId": id,
+            "StartIndex": 0,
+            "NoOfFunds": 25
+        },
+        {
+            headers: {
+                "PartnerId": "458bf15f-d45d-4385-b3ea-9903c76cf411",
+                "Authorization": 'Bearer ' + Secure_items.token,
+                'Access-Control-Allow-Origin': "*",
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        })
+
+    var fund_info = fundInfo.data.FundsSummary
+
+    while (Secure_items.hiaInvestmentInfo.length > 0) {
+        Secure_items.hiaInvestmentInfo.pop();
+    }
+    if (fundInfo.data.FundsSummary) {
+        while (Secure_items.hiaInvestmentInfo.length > 0) {
+            Secure_items.hiaInvestmentInfo.pop();
+        }
+        Secure_items.hiaInvestmentInfo.push(fund_info.Funds)
+    }
+
+    if(Secure_items.hiaInvestmentInfo[0]){
+        Secure_items.hiaInvestmentInfo[0].map(myFund=>{
+            console.log(myFund)
+        })
+    }
+    
 }

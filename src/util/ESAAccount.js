@@ -2,7 +2,7 @@ import axios from 'axios';
 import Secure_items from '../Constants/Secure_items';
 
 export async function esaAccountDetails(id, emp_id, employer_id) {
-    const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/ESAAccountDetails',
+    const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/ESFAccountDetails',
         {
             "ID": id,
             "EmployeeID": emp_id,

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const MoneyValue = ({ balance, style, baseTextFontSize, superScriptTextFontSize }) => {
     const isValidBalance = typeof balance === 'number' && !isNaN(balance);
-    const [baseText, decimal] = isValidBalance ? balance.toFixed(2).split('.') : ['00', '00'];
+    const [baseText, decimal] = isValidBalance ? balance.toFixed(2).split('.') : ['0', '00'];
 
     function numberWithCommas(x) {
         x = x.toString();

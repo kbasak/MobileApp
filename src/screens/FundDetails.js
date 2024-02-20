@@ -1,3 +1,4 @@
+import CobraFundDetails from "./CobraFundDetails";
 import ESAFundDetails from "./ESAFundDetails";
 import HIAFundDetails from "./HIAFundDetails";
 import HSAFundDetails from "./HSAFundDetails";

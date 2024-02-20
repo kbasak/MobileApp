@@ -14,6 +14,9 @@ const LoginMpinScreen = ({ navigation, route }) => {
     const [popupVisible, setpopupVisible] = useState(false);
 
     const hideModal = () => {
+        setUserName('');
+        setPassword('');
+        setMpin('');
         setpopupVisible(() => !popupVisible)
     };
 

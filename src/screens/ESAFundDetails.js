@@ -12,7 +12,7 @@ function ESAFundDetails({ setScreen, account }) {
 
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
-        fontWeight: '600',
+        fontWeight: 'bold',
         textAlign: 'right',
         color: '#000080'
     };
@@ -40,9 +40,7 @@ function ESAFundDetails({ setScreen, account }) {
                         </View>
                         <View style={{ flex: 1, flexDirection:'row' }}>
                             <View>
-                                <Text style={{ fontSize: 25, fontFamily: 'sans-serif-condensed', fontWeight: '400', flex: 1, textAlign: 'right', lineHeight: 30 }}>
-                                    <Foundation name="dollar" size={33} color="#000080" />
-                                </Text>
+                                <Foundation name="dollar" size={22} color="#000080" style={{ lineHeight: 21 }} />
                             </View>
                             <View>
                                 <MoneyValue
@@ -63,34 +61,32 @@ function ESAFundDetails({ setScreen, account }) {
                 </View>
                 <View style={[styles.fundInterest, { minHeight: 65, marginTop: 0 }]}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employee Contributions </Text>
-                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 40 }} />
-
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employee Contributions </Text>
                     </View>
-                    <View style={{ flexDirection: 'row' }}>
-                    <Foundation name="dollar" size={34} color="#000080" style={{lineHeight:37}} />
+                    <View style={{ flexDirection: 'row', paddingTop:5 }}>
+                        <Foundation name="dollar" size={21} color="#000080" style={{ lineHeight: 30 }} />
                     <MoneyValue
                             balance={Secure_items.accountDetails[0].EmployeeContributions}
                             style={[customTextStyle, { marginTop: 5 }]}
-                            baseTextFontSize={25}
-                            superScriptTextFontSize={18}
+                            baseTextFontSize={20}
+                            superScriptTextFontSize={16}
                         />
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 30, paddingLeft:20 }} />
                     </View>
                 </View>
                 <View style={[styles.fundInterest, { minHeight: 60, marginTop: 2.5 }]}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 17, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employer Contributions </Text>
-                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 40 }} />
-
+                        <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingVertical: 10 }}>Employer Contributions </Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
-                    <Foundation name="dollar" size={34} color="#000080" style={{lineHeight:37}} />
+                        <Foundation name="dollar" size={24} color="#000080" style={{ lineHeight: 30 }} />
                     <MoneyValue
                             balance={Secure_items.accountDetails[0].EmployerContributions}
                             style={[customTextStyle, { marginTop: 5 }]}
-                            baseTextFontSize={25}
-                            superScriptTextFontSize={18}
+                            baseTextFontSize={20}
+                            superScriptTextFontSize={16}
                         />
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" style={{ paddingVertical: 5, lineHeight: 30, paddingLeft:20 }} />
                     </View>
                 </View>
                 <View style={styles.todoitem}>
@@ -118,19 +114,18 @@ function ESAFundDetails({ setScreen, account }) {
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Rate</Text>
                         <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestRate}</Text>
                     </View>
-                    <View style={{ paddingVertical: 8 }}>
-                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{ paddingVertical: 12 }}>
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" />
                     </View>
                 </View>
-
-
                 <View style={[styles.fundInterest, { borderBottomColor: '#C0C0C0', borderBottomWidth: 3, marginTop: 2.5, maxHeight: 80 }]}>
                     <View>
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Interest Earned(Year to date)</Text>
-                        <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestYTD}</Text>
+                        <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>
+                            {Secure_items.accountDetails[0].InterestSummary.InterestYTD}</Text>
                     </View>
-                    <View style={{ paddingVertical: 8 }}>
-                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{ paddingVertical: 12 }}>
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" />
                     </View>
                 </View>
 
@@ -139,8 +134,8 @@ function ESAFundDetails({ setScreen, account }) {
                         <Text style={{ fontSize: 15, fontFamily: 'sans-serif-condensed' }}>Annual Percentage Yield(APY)</Text>
                         <Text style={{ fontSize: 24, fontFamily: 'sans-serif-condensed', fontWeight: '700', paddingVertical: 8 }}>{Secure_items.accountDetails[0].InterestSummary.InterestAPY}</Text>
                     </View>
-                    <View style={{ paddingVertical: 8 }}>
-                        <Ionicons name="ios-information-circle-outline" size={40} color="#00806b" />
+                    <View style={{ paddingVertical: 12 }}>
+                        <Ionicons name="ios-information-circle-outline" size={30} color="#00806b" />
                     </View>
                 </View>
                 <View style={[styles.conclusionItem, { minHeight: 60, }]}>
@@ -239,7 +234,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 6,
         borderLeftColor: 'orange',
         borderBottomColor:'#C0C0C0',
-        borderBottomWidth:8
+        borderBottomWidth:12
     },
     conclusionInfo: {
         paddingHorizontal: 15,

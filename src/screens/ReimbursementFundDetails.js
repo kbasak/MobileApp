@@ -9,7 +9,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
     }
     const customTextStyle = {
         fontFamily: 'sans-serif-condensed',
-        fontWeight: '600',
+        fontWeight: 'bold',
         textAlign: 'right',
         color: '#191970'
     };
@@ -44,9 +44,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
                 <View style={[styles.fundAmount, { height: 210, flexDirection: 'column' }]}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text style={{ fontSize: 16, fontFamily: 'sans-serif-condensed', paddingTop: 8, flex: 1 }}>Available Funds</Text>
-                        <Text style={{ fontSize: 27, fontFamily: 'sans-serif-condensed', fontWeight: '600', textAlign: 'right', flex: 1, color: '#000080',lineHeight: 40 }}>
-                            <Foundation name="dollar" size={35} color="#000080" />
-                        </Text>
+                        <Foundation name="dollar" size={24} color="#000080" style={{ lineHeight: 30 }} />
                         <MoneyValue
                             balance={Secure_items.accountDetails[0].FundsAvailable}
                             style={[customTextStyle, { marginTop: 5 }]}
@@ -80,7 +78,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop:5 }}>
                             <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', color: '#000080', lineHeight: 32}}>
-                                <Foundation name="dollar" size={35} color="#000080" />
+                            <Foundation name="dollar" size={24} color="#000080" style={{ lineHeight: 25 }} />
                                 </Text>
 
                                 <MoneyValue
@@ -107,7 +105,7 @@ function ReimbursementFundDetails({ setScreen, account }) {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop:5 }}>
                             <Text style={{ fontSize: 24, lineHeight: 30, fontFamily: 'sans-serif-condensed', color: '#000080', lineHeight: 32}}>
-                                <Foundation name="dollar" size={35} color="#000080" />
+                            <Foundation name="dollar" size={24} color="#000080" style={{ lineHeight: 25 }} />
                                 </Text>
 
                                 <MoneyValue

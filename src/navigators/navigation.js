@@ -185,6 +185,7 @@ function MyTabs() {
         name="Settings"
         component={SettingsScreen}
         options={{
+          title: 'Settings',
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color }) => (
             <Ionicons name="settings-outline" size={26} color={color} />
