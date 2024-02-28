@@ -1,4 +1,4 @@
-import { Entypo, Feather, Foundation } from "@expo/vector-icons";
+import { Feather, Foundation } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import MoneyValue from "../components/MoneyValue";

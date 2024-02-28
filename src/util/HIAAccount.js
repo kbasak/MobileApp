@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_URL from '../Constants/API_URL';
 import Secure_items from '../Constants/Secure_items';
 
 export async function hiaAccountDetails(id, emp_id, employer_id) {
-    const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/InvestmentAccountDetails',
+    const response = await axios.post(API_URL.base_api + API_URL.hiaAccount,
         {
             "ID": id,
             "EmployeeID": emp_id,
@@ -26,8 +27,8 @@ export async function hiaAccountDetails(id, emp_id, employer_id) {
         Secure_items.accountDetails.push(account_info)
     }
 
-    // const fundInfo = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/MyInvestments',
-    const fundInfo = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/HIA/Funds',
+    //const fundInfo = await axios.post(API_URL.base_api + API_URL.myInvestment,
+    const fundInfo = await axios.post(API_URL.base_api + API_URL.hiaFunds,
         {
             "AccountId": id,
             "StartIndex": 0,

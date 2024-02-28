@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { Alert } from 'react-native';
+import API_URL from '../Constants/API_URL';
 import Secure_items from '../Constants/Secure_items';
 
 export async function authenticationMember(userData) {
-    const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Authentication/Authentication/AuthenticateMember',
+    const response = await axios.post(API_URL.base_api + API_URL.authenticateMember,
         userData,
         {
             headers: {

@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_URL from '../Constants/API_URL';
 import Secure_items from '../Constants/Secure_items';
 
 export async function hsaAccountDetails(id, emp_id, employer_id) {
-    const response = await axios.post('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/HSAAccountDetails',
+    const response = await axios.post(API_URL.base_api + API_URL.hsaAccount,
         {
             "ID": id,
             "EmployeeID": emp_id,

@@ -1,12 +1,13 @@
 import axios from 'axios';
+import API_URL from '../Constants/API_URL';
 import Secure_items from '../Constants/Secure_items';
 
 export async function latestAccountDetails() {
-    const response = await axios.get('https://mobileapi-uat2.payflexusa.com/api/v1/Accounts/Accounts/LatestAccounts',
+    const response = await axios.get(API_URL.base_api + API_URL.latestAccount,
         {
             headers: {
                 "PartnerId": "458bf15f-d45d-4385-b3ea-9903c76cf411",
-                "Authorization": 'Bearer '+Secure_items.token,
+                "Authorization": 'Bearer ' + Secure_items.token,
                 'Access-Control-Allow-Origin': "*",
                 'Access-Control-Allow-Credentials': 'true'
             }
@@ -48,5 +49,5 @@ export async function latestAccountDetails() {
     // Secure_items.reAccountType[0].map((account)=>{
     //     console.log("Account Details: "+account.AccountType)
     // })
-    
+
 }
